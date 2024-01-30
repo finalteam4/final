@@ -36,7 +36,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="background:#ddd">
+					<tr style="background:#ddd" th:if="${notice != null}">
 						<th><a th:href="@{|/noticeboard/}">공지사항</a></th>
 						<td class="td_title" style="width:200px;">
 						    <a th:href="@{|/noticeboard/${notice.id}|}">
