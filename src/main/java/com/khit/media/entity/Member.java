@@ -41,4 +41,7 @@ public class Member{
 	   
 	@Column
 	private String memberArea;
+	
+	@Column
+	private String memberRole;
 }
