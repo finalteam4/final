@@ -1,42 +1,11 @@
 @charset "UTF-8";
 
-/* 나눔 바른고딕 폰트 */
-@font-face {
-    font-family: 'NanumBarunGothic';
-    src: url('/static/fonts/NanumBarunGothic.otf') format('opentype'),
-         url('/static/fonts/NanumBarunGothic.ttf') format('truetype');
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: 'NanumBarunGothic';
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot'),
-         url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'),
-         url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'),
-         url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype');
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: 'NanumBarunGothic';
-    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot'),
-         url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'),
-         url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'),
-         url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
-    font-weight: 300;
-}
-
-/* 공통 스타일 설정 */
-.nanumbarungothic * {
-    font-family: 'NanumBarunGothic', sans-serif;
-}
-
 /*============================================================
 	<<나눔 스퀘어 라운드>>
-	font-family: 'NanumSquareRoundLight';
-	font-family: 'NanumSquareRound';
-	font-family: 'NanumSquareRoundBold';
-	font-family: 'NanumSquareRoundExtraBold';
+	light :300;
+	regular : 500;
+	bold : 700;
+	bolder: 900;
 =================================================================*/
 
 @font-face {

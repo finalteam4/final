@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/* 공통스타일 */
+* {margin: 0; padding: 0;  font-family: 'NanumSquareRound';}
+html, body{height:auto; min-height:100%; min-width:1440px; width:100%; color: #353535; background: #e9e9e9;}
+ul li{list-style: none;}
+a {text-decoration: none; color: #353535; font-weight:900;}
+a:hover{text-decoration: none; color: #004aad; font-weight:900;}
+
+/* header */
+#planB-header{max-width: 1024px; width:100%; margin:0 auto; 
+	border:1px solid black; /* body: 1024px틀 마지막에 지울예정 */
+	}
+.planB-sidemenu{display:flex; 
+	justify-content: flex-end;
+	}
+.planB-sidemenu a{padding: 10px 15px;}
+
+.planB-logo-menu{display:flex; align-items: center;}
+.planB-logo-menu h2{font-weight:900;}
+
+.main-menu{display:flex; align-items: center; margin: 0 auto;}
+.main-menu a{padding:0 50px;}
+
+.menu-bot-img{position:relative;}
+.menu-bot-img span{position:absolute; width:80px; top: 15px;}
+#faqBox{display:none;} /* 초기 상태는 숨김 */
