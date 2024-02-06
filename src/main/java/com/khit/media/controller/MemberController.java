@@ -106,5 +106,8 @@ public class MemberController {
 		memberService.update(memberDTO);
 		return "redirect:/member/" + memberDTO.getId();
 	}
-	
+	@GetMapping("/member/account")
+	public String account() {
+		return "member/account";
+	}
 }
