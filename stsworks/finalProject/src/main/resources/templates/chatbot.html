@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Chatbot..</title>
+<style>
+	h1{color:navy; text-align:center;}
+	body{background: #e9e9e9;}
+</style>
 </head>
 <body>
-
+	<div th:replace="~{header}"></div>
+	<h1>[ 나경 ] 챗봇서비스 준비중... :)</h1>
+	<div th:replace="~{footer}"></div>
 </body>
 </html>

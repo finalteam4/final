@@ -13,8 +13,8 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
                      header 
 ================================================ */
 #planB-header{width:100%; max-width:1024px; margin:0 auto; background: #e9e9e9;
-/* 	 body: 1024px틀 마지막에 지울예정 */
-	border:1px solid black;
+/* 	콘텐츠 1024px 틀 - 마지막에 지울예정 */
+/* 	border:1px solid black; */
 }
 /* header - 로그인, 회원가입, 마이페이지 */
 .planB-sidemenu{
@@ -23,7 +23,8 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
 	justify-content: flex-end;
 }
 .planB-sidemenu a{padding: 15px 20px; font-size:18px;}
-/* header - 로고, 메인메뉴, 챗봇 */
+
+/* header - 로고 */
 .planB-menuWrap{width:100%; display:flex; margin-bottom:10px;}
 .main-img-logo{
 	width:290px; 
@@ -32,7 +33,9 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
 	padding-left:20px;
 	}
 .main-img-logo h2{padding:10px 0 0 10px; font-weight:900;}
+.main-img-logo h2:hover{color: #353535;}
 
+/* header - 메인 메뉴 + 챗봇 */
 .main-menu{
 	width:90%; 
 	margin:0 auto; 
@@ -43,10 +46,35 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
     }
 .main-menu a{font-size:19px; letter-spacing:1px;}
 .main-menu span{font-size:15px;}
+
 /*===============================================
- 					footer
+ 					footer 
+ 			bg : #353535 / font : #f3eeea
 =================================================*/
+#planB-footer{width:100%; max-width:1024px; margin:0 auto; background: #353535;
+/* 	콘텐츠 1024px 틀 - 마지막에 지울예정 */
+/* 	border:1px solid black; */
+	}
+#planB-footer a{color:#f3eeea;}
+#planB-footer a:hover{color:#fc80ac;}
+#planB-footer p{color:#f3eeea;}
 
+.footer-wrap{display:flex; justify-content: space-between;}
 
+/* footer - 공지사항, 자주묻는질문, 개인정보처리방침 */
+.footer-wrap-pages{display:flex; width:400px; padding:20px 10px 10px 10px; }
+.footer-wrap-pages a{padding: 0 10px;}
 
+/* footer -  ADMIN */
+.footer-wrap-admin{display:flex; padding: 20px 20px 0 0;}
 
+/* footer - 학원 주소 및 copyright(저작권) */
+.footer-loca-copy{display:flex; justify-content: space-between; padding: 10px 20px 20px 20px;}
+
+/*====================================================
+				index (main)
+=======================================================*/
+#index-main-body{width:100%; max-width:1024px; margin:0 auto; text-align:center;
+/* 	콘텐츠 1024px 틀 - 마지막에 지울예정 */
+/* 	border:1px solid black; */
+	}
