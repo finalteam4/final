@@ -11,9 +11,8 @@
 <body>
 	<div th:replace="~{header}"></div>
 	
-<!-- 	<div th:replace="~{footer}"></div> -->
+	<div th:replace="~{footer}"></div>
 </body>
-	<div style="position: absolute; top: 90%; left: 90%; transform: translate(-90%, -90%); z-index: 1;">
-		<p sec:authorize="hasAnyAuthority('ADMIN')"><a th:href="@{/member/list}">회원목록</a></p>
-	</div>	
+		
+	
 </html>
