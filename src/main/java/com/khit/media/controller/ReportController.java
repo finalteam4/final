@@ -16,7 +16,9 @@ import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.BoardDTO;
 import com.khit.media.dto.ReportDTO;
 import com.khit.media.service.BoardService;
+import com.khit.media.service.ReplyService;
 import com.khit.media.service.ReportService;
+import com.khit.media.service.VoteService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +27,8 @@ import lombok.RequiredArgsConstructor;
 public class ReportController {
 	
 	private final BoardService boardService;
+	private final ReplyService replyService;
+	private final VoteService voteService;
 	private final ReportService reportService;
 	
 	@GetMapping("/report/")
@@ -125,5 +129,12 @@ public class ReportController {
 		boardService.updateReportCount(boardId);
 		return "redirect:/qnaboard/" + boardId;
 	}
-	
+	@GetMapping("/report/delete/{id}")
+	public String deleteReport(@PathVariable Long id) {
+		boardService.delete(id);
+		replyService.deleteByBoardId(id);
+		voteService.deleteByBoardId(id);
+		reportService.deleteByBoardId(id);
+		return "redirect:/report/";
+	}
 }

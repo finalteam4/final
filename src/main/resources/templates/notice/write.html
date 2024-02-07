@@ -13,10 +13,9 @@
       
       <div class="board_content">
       <form th:action="@{/noticeboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
-         <select class="form-select" aria-label="Disabled select example" name="boardCategory" disabled style="margin-bottom: -10px;">
-			  <option value="notice" selected>공지사항</option>
-		 </select>
-         <input type="text" id=boardTitle th:field=*{boardTitle} class="form-control mt-4 mb-2"
+         <input type="text" placeholder="공지사항" class="form-control" readonly>
+         <input type="hidden" id="boardCategory" name="boardCategory" value="notice">
+         <input type="text" id=boardTitle th:field=*{boardTitle} class="form-control"
             placeholder="제목을 입력해주세요." required
          >
          <div class="form-group">
