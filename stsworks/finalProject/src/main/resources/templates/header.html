@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header th:fragment="header-fragment">
+    
+        <section id="planB-header">
+        
+            <div class="planB-sidemenu">
+            	<!-- 채채 페이지와 연결 -->
+            	<a th:href="@{/member/login}">Log in</a>
+            	<a th:href="@{/member/join}">Sign up</a>
+            	<a th:href="@{/member/account}">Account</a>
+            </div>
+			
+            <div class="planB-menuWrap">
+            	<div class="main-img-logo">
+            		<img th:alt="handmad_planB_logo" src="/images/planB-logo.png" style="width:60px; height:60px;">
+            		<h2>안전한 대한민국,<br>PLAN B</h2>
+            	</div>
+          
+	            <div class="main-menu">
+	            	<a th:href="@{/board/preparation}">재난예방대비</a>
+	            	<a th:href="@{/board/condition}">재난현황</a>
+	            	<a th:href="@{/board/community}">참여와신고</a>
+	            	<div class="menu-bot-img">
+            			<a><i class="fa-solid fa-robot" style="font-size:25px;"></i><span> FAQ안내봇</span></a>
+	            	</div>
+	            </div>
+            </div>
+        </section>
+    </header>
+    <script src="/js/favicon.js"></script>
+</body>
+</html>
