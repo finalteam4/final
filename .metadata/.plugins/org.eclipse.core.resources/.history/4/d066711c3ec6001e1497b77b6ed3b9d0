@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>설정</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+설정
+</body>
+</html>

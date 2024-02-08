@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>안전한 대한민국, PLAN B</title>
+<!-- 파비콘 추가 -->
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+	<div th:replace="~{header}"></div>
+	
+<!-- 	<div th:replace="~{footer}"></div> -->
+</body>
+	<div style="position: absolute; top: 90%; left: 90%; transform: translate(-90%, -90%); z-index: 1;">
+		<p sec:authorize="hasAnyAuthority('ADMIN')"><a th:href="@{/member/list}">회원목록</a></p>
+	</div>	
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>설정</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+  <div class="ch">
+      <div th:replace="~{header::header-fragment}"></div>
+      
+설정
+</div>
+
+</body>
+</html>

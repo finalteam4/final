@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>신고게시판</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<script src="https://kit.fontawesome.com/69798321c6.js" ></script>
+</head>
+<body>
+<div th:replace="~{header}"></div>
+<h2 class="board_h2">신고게시판</h2>
+      <div id="content">
+      <div class="board_content">
+      <table class="tbl_list">
+         <thead>
+            <tr style="border-bottom: 2px solid #000; height: 50px;">
+               <th scope="col">글분류</th>
+               <th scope="col">글제목</th>
+               <th scope="col">글쓴이</th>
+               <th scope="col">작성일</th>
+               <th scope="col">신고수</th>
+               <th scope="col">삭제</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr th:each="board : ${boardList}" style="border-bottom: 1px solid #000; height: 50px;">
+                <th>
+                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/infoboard/?cate=notice}">공지사항</a></span>
+                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
+                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
+                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
+                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
+                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
+                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
+                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/infoboard/?cate=qna}">QnA</a></span>
+                </th>
+
+                <td class="td_title" style="width:40%;">
+                   <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+                      <span th:text="${board.boardTitle}"></span>
+                      <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+                   </a>
+               </td>
+
+                   <td th:text="${board.boardWriter}"></td>
+                   <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+                   <td th:text="${board.reportCount}"></td>
+                   <td><a th:href="@{|/report/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
+                   		<i class="fa-solid fa-square-xmark"></i>
+                   </a></td>
+               </tr>
+         </tbody>
+      </table>
+      <!-- 페이징처리 시작 -->
+         <div style="width: 50%; margin: 10px auto;">
+                 <ul class="pagination_btn">                 
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${startPage eq 1}? '/report/?page=1' : @{/report/(page=${startPage-1})}">&lt;&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.first}? '/report/?page=1' : @{/report/(page=${boardList.number})}">&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq page} ? 'page-btn active' : 'page-btn'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                      <a class="page-box" th:href="@{/report/(page=${page})}">
+                          <span th:text="${page}"></span>
+                      </a>
+                  </li>
+                      <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.last}? @{/report/(page=${endPage})} : @{/report/(page=${boardList.number+2})}">&gt;</a>
+                      </li>
+                      <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.totalPages eq endPage}? @{/report/(page=${endPage})} : @{/report/(page=${endPage+1})}">&gt;&gt;</a>
+                      </li>
+                 </ul>
+          </div>
+          <!-- 페이징처리 끝 -->
+      <!-- 검색 영역 -->
+         <div class="search_btn2">
+           <form th:action="@{/reportboard/}" method="get">
+              <div style="display: flex; justify-content: center;">
+	               <select name="field" class="toggle_btn">
+	                  <option value="t" th:selected="${field == 't'}" th:text="제목"></option>
+	                       <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
+	                       <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
+	                   </select>
+	               <input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
+	                     placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
+	               <button type="submit" class="board_btn2">검색</button>
+				</div>
+           </form>
+          </div>
+      </div>
+   </div>
+</body>
+</html>
