@@ -10,16 +10,19 @@
 </head>
 <body>
  	<!-- <a th:href="@{/}"><button type="button" id="btn1" >처음으로</button></a> -->
+ 	
+ 	<div th:replace="~{header}"></div> 
 	<div class="main-main">
+	
 	<div id="state_sub" class="bg_4">
     <div class="stateWrap">
                 <strong>산불</strong>
         <ul>
                 <li class=""><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
                 
-                <li class=""><a href=""><strong>산사태</strong></a></li>
+                <li class=""><a th:href="@{/data/data6}"><strong>산사태</strong></a></li>
                 
-                <li class=""><a href=""><strong>대기오염</strong></a></li>
+                <li class=""><a th:href="@{/data/data7}"><strong>대기오염</strong></a></li>
                 <li class=""><a href=""><strong>붕괴</strong></a></li>
                 
                 <li class="active"><a href=""><strong>산불</strong></a></li>
