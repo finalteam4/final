@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.MemberDTO;
@@ -21,7 +22,9 @@ import com.khit.media.service.VoteService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class MemberController {
@@ -51,13 +54,15 @@ public class MemberController {
 	
 	@PostMapping("/member/join")
 	public String join(@Valid MemberDTO memberDTO,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,
+			MultipartFile memberFile) throws Exception{
 		if(bindingResult.hasErrors()) {
+			log.info("has errors.....");
 			//에러가 있으면 회원 가입 페이지에 머무름
 			return "member/join";
 		}
 		
-		memberService.save(memberDTO);
+		memberService.save(memberDTO, memberFile);
 		return "redirect:/login";
 	}
 	
@@ -107,7 +112,9 @@ public class MemberController {
 		return "redirect:/member/" + memberDTO.getId();
 	}
 	@GetMapping("/member/account")
-	public String account() {
+	public String account(@AuthenticationPrincipal SecurityUser principal, Model model) {
+		Member member = principal.getMember();
+		model.addAttribute("member", member);
 		return "member/account";
 	}
 }
