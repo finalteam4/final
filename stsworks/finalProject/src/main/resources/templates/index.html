@@ -5,61 +5,121 @@
 <title>안전한 대한민국, PLAN B</title>
 <!-- 파비콘 추가 -->
 <link rel="stylesheet" href="/css/style.css">
+<script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
 </head>
 <!-- Main page -->
 <body>
 	<div th:replace="~{header}"></div>
-		<div id="index-main-body"></div>
-			<div></div>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>body1 - 재난 알림 (기상청 : 기상특보 조회 서비스 api 이용예정)</p>
-			<p>body2_left box - 날씨정보 / 미세먼지 api 이용</p>
-			<p>body2_right box - 실시간 제보(member권한) 게시판 불러오기<br></p>
-			
-			<p>[ body3 bg : #dbe9f5 ]</p>
-			<p>body3_rectangle - 긴급재난문자 (재난문자api) : 상현오라버니 git...</p>
-			<p>body3_circle btn3 - 비상연락망(사이트 내 비상연락망 페이지 href), 재난 유관기관(page제작), 기상특보(KBS재난포털 href연결)</p>
-			
-			<p>[ body4 bg : #4761a1 ]</p>
-			<p>body4 - 지진 발생 시 이렇게 행동하세요!, 더보기(재난 별 행동요령 페이지href연결)</p>
-			<p>body4 - 컨테이너 속 행동요령 img로 진행</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
-			<p>example</p>
+<!------------------- Body1 : 기상특보 한 줄 알림 ----------------------------->
+	<section id="weather-caution1">
+		<div class="caution-content">
+			<p><span>[ 초미세먼지 주의보 ]&nbsp;</span> 경기(중부권), 세종(세종권역), 충남(북부권역)</p>
 		</div>
+	</section>
+<!---------------  Body2 : 날씨정보, 실시간 제보 게시판 ------------------------->
+	<section id="weather-realTimeReport">
+		<!-- 날씨정보(+미세먼지) -->
+		<article class="weaterInfo-airPollution">
+			<div class="myLocation-time">
+				<p>서울특별시 영등포구 당산제2동</p>
+				<p style="color:#5268CF">
+					<i class="fa-solid fa-crosshairs" style="color:#0094FF"></i>&nbsp;내 위치
+				</p>
+				<p id="referenceTime">02월 08일(목) 오후 3시 기준</p>
+			</div>			
+			<div class="weather-title">
+				<p>날씨정보</p>
+				<p>미세먼지</p>			
+			</div>
+			<div class="weather-contentWrap">
+				<!-- 기온 -->
+				<div class="content-temperature"> 
+					<p class="icon-temp">
+						<i class="fi fi-rr-brightness" style="color:#FFC700;"></i> 7ºC
+					</p>
+					<div class="windchill-humidity">
+						<p>체감온도 4.3º</p>
+						<p>습도 52%</p>					
+					</div>
+				</div>
+				<!-- 미세먼지 -->
+				<div class="content-fineDust"> 
+					<dl class="particulateMatter">
+						<dt style="font-size:17px; padding-right:10px;">미세먼지</dt>
+						<dd style="font-weight:900; font-size:45px;">79</dd>
+						<dd style="font-weight:700; font-size:20px;">&nbsp;보통</dd>
+					</dl>
+					<dl class="fine-particulateMatter">
+						<dt style="font-size:17px; padding-right:10px;">초미세먼지</dt>
+						<dd style="font-weight:900; font-size:45px;">62</dd>					
+						<dd style="font-weight:700; font-size:20px;">&nbsp;나쁨</dd>					
+					</dl>
+				</div>
+			</div>
+		</article>
+		<!-- 실시간 제보 게시판 -->		
+		<article class="realTimeReport-wrap">
+			<div class="report-title">
+				<p>실시간 제보</p>
+				<a th:href="@{/board/notice}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
+			</div>
+			<p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p>
+		</article>
+	</section>	
+<!-------- Body3 : 긴급재난문자 , btn3(비상연락망, 재난유관기관, 기상특보) ------------>
+	<section id="emergency-circleBtn3-bg">
+		<article class="emergency-circleBtn3-wrap">
+			<!-- 긴급재난문자(재난문자 api) -->
+			<div class="emergency-pinkBox">
+				<p class="e-title">긴급 재난문자</p>
+				<div class="emergency-text">
+					<p>재난문자html 만들고, javascript로 불러올 예정..</p>
+				</div>
+			</div>		
+			<!-- btn3 - 비상연락망, 재난유관기관, 기상특보 -->
+			<div class="useful-three-btn">
+				<!-- btn1 : 비상연락망 -->
+				<div class="useful-btn">
+					<a th:href="@{/others/emergency-contacts}">
+						<img th:alt="sos" src="/images/sos.png">
+						<p>비상연락망</p>	
+					</a>		
+				</div>
+				<!-- btn2 : 재난유관기관 -->
+				<div class="useful-btn">
+					<a th:href="@{/pages/public-institution}">
+						<img th:alt="public_institution" src="/images/public-institutions.png" style="width:100px; height:100px;">
+						<p>재난 유관기관</p>
+					</a>
+				</div>
+				<!-- btn3 : 기상특보 - KBS재난포털 기상특보 연결 -->
+				<div class="useful-btn">
+					<a href="https://d.kbs.co.kr/special/special" target="_blank">
+						<img th:alt="special_weather" src="/images/weather.png">
+						<p>기상특보</p>
+					</a>
+				</div>
+			</div>
+		</article>
+	</section>	
+<!---------------------- Body4 : 지진 발생 시 행동요령 ------------------------>	
+	<section id="actionTips-disaster">
+		<div>
+			<p>body4 - 지진 발생 시 이렇게 행동하세요!</p>
+			<p> 더보기(재난 별 행동요령 페이지href연결)</p>
+		</div>
+		<div>
+			<p>body4 - 컨테이너 속 행동요령 img로 진행</p>
+		</div>	
+	</section>
+			
+			
+			
+		
+			
+		
+			
+			
 	<div th:replace="~{footer}"></div>
 </body>
 

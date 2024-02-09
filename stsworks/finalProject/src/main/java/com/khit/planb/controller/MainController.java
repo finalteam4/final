@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 	
-// 로그인, 회원가입, 마이페이지 불러오기	
+// header - 로그인, 회원가입, 마이페이지 불러오기	
 	@GetMapping("/member/login")
 	public String loginForm() {
 		return "/member/login";
@@ -25,7 +25,7 @@ public class MainController {
 		return "/member/admin";
 	}
 	
-//	header 메뉴 불러오기
+//	header 메뉴 불러오기 - 재난예방대비, 재난 현황, 참여와 신고
 	@GetMapping("/board/preparation")
 	public String preparationPage() {
 		return "/board/preparation";
@@ -57,4 +57,16 @@ public class MainController {
 	public String ppPage() {
 		return "/pages/privacyPolicy";
 	}
+// others폴더의 html 불러오기
+	@GetMapping("/others/emergency-contacts")
+	public String emergencyPage() {
+		return "/others/emergency-contacts";
+	}
+// pages폴더의 html불러오기
+	
+	@GetMapping("/pages/public-institution")
+	public String publicPages() {
+		return "/pages/public-institution";
+	}
+	
 }
