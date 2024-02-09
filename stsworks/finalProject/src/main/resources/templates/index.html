@@ -104,13 +104,20 @@
 	</section>	
 <!---------------------- Body4 : 지진 발생 시 행동요령 ------------------------>	
 	<section id="actionTips-disaster">
-		<div>
-			<p>body4 - 지진 발생 시 이렇게 행동하세요!</p>
-			<p> 더보기(재난 별 행동요령 페이지href연결)</p>
+		<div class="actionTips-earthQuake">
+			<!-- title + 더보기 -->
+			<div class="earthQuake-behavior">
+				<p>지진 발생 시 이렇게 행동하세요 !</p>
+				<a th:href="@{/board/preparation}">
+				 	더보기&nbsp;<i class="fi fi-rr-arrow-circle-right" style="font-size:13px;"></i>
+				</a>
+			</div>
+			<!-- 행동요령 img -->
+			<div class="specific-behavior">
+				<img th:alt="tips_container" src="/images/tips-container.jpg">
+			</div>
+		
 		</div>
-		<div>
-			<p>body4 - 컨테이너 속 행동요령 img로 진행</p>
-		</div>	
 	</section>
 			
 			
