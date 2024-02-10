@@ -36,16 +36,115 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
 .main-img-logo h2:hover{color: #353535;}
 
 /* header - 메인 메뉴 + 챗봇 */
-.main-menu{
-	width:90%; 
-	margin:0 auto; 
-	display:flex; 
-	justify-content: space-evenly;
-    align-items: center; 
-    padding-top:20px;
-    }
-.main-menu a{font-size:19px; letter-spacing:1px;}
-.main-menu span{font-size:15px;}
+nav {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+/* common */
+nav ul {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+nav ul::after {
+	display: block;
+	clear: both;
+	content: '';
+}
+nav ul li {
+	position: relative;
+	float: left;
+	border: none;
+}
+nav ul li:not(:first-child) {
+	border-left: none;
+}
+nav ul li:hover {
+	background-color: rgba(255,255,255,.8);
+}
+nav ul li a {
+	display: inline-block;
+	padding: 1em 2.5em;
+	color: #353535;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	font-size:19px;
+}
+nav ul ul {
+	position: absolute;
+	top: 100%;
+	left: 0px;
+}
+nav ul ul li {
+	float: none;
+	margin: 0;
+	border: none;
+}
+nav ul ul li:not(:first-child) {
+	 border: none;
+	border-top: none;
+}
+nav ul ul ul {
+	position: absolute;
+	top: 0px;
+	left: 100%;
+/* 	 border-top-right-radius:30px;  */
+}
+
+.nav03 ul ul {
+	visibility: hidden;
+    opacity: 0;
+  	background-color: #fff;/* 흰색 배경으로 설정 */
+    transition: .2s ease-in-out, background-color 0s;
+    transform: translateY(-20px);
+    border-bottom: 3px solid #004aad; 
+/*     border-bottom-left-radius:30px; */
+/*     border-bottom-right-radius:30px; */
+}
+
+/* 메인 메뉴 항목 호버 시 */
+/* .nav03 ul li:hover { */
+/*     border-top-left-radius:30px;  */
+/*     border-top-right-radius:30px;  */
+/*     background-color: rgba(255, 255, 255, 0.5); 투명도 조정 */
+/* } */
+
+.nav03 ul li:hover > ul {
+	visibility: visible;
+    opacity: 1;
+    background-color: #fff; /* 흰색 배경 유지 */
+    transform: translateY(0);
+}
+/* 서브메뉴 호버 시에도 흰색 배경 유지 */
+.nav03 ul ul li:hover > ul {
+    background-color: #fff; /* 흰색 배경 유지 */
+}
+
+.menu-bot-img a {
+    display: inline-block;
+    color: #353535; /* FAQ안내봇 텍스트 색상 */
+    text-decoration: none;
+    font-size: 18px;
+}
+.menu-container {
+    display: flex;
+    justify-content: space-between; /* 메뉴 항목들과 FAQ 안내봇 사이의 공간을 균등하게 분배 */
+    align-items: center; /* 세로 축 중앙 정렬 */
+    width: 100%; /* 컨테이너 너비를 최대로 설정 */
+}
+
+.menu-bot-img i{    
+	padding-left: 40px;
+	}
+.menu-bot-img a:hover{color:#004aad;}
+.menu-bot-img span{font-size:15px;}
+
 
 /*===============================================
  					footer 
@@ -249,7 +348,7 @@ footer{background: #353535;}
  .useful-btn img {
     width: 100px;
     height: 100px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
  .useful-btn p{
     font-size: 17px; 
@@ -295,7 +394,6 @@ footer{background: #353535;}
 .earthQuake-behavior a:hover{
 	color:#FC80AC;
 }
-
 /* 행동요령 img box */
 .specific-behavior{
 	width:100%;
@@ -307,14 +405,5 @@ footer{background: #353535;}
     object-fit: cover; /* 이미지의 비율을 유지하면서 컨테이너를 채움 */
     display: block; /* 이미지 아래의 여백 제거 */
 }
-
-
-
-
-
-
-
-
-
 
 
