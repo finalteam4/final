@@ -481,7 +481,95 @@ footer{background: #353535;}
     padding-top: 3px;
     margin-top: 5px;
 }
-
+/*=====================================================================
+				자주묻는질문 faq / 개인정보 처리방침
+====================================================================*/
+  #question_container{
+  	max-width:1024px;
+	width:100%;
+	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+	margin-bottom: 60px;
+  }
+  .faq-wrap{
+      margin-top: 40px;
+      margin-left: 18%;
+  }
+  .pp-wrap {
+  	width: 70%;
+    height: 105px;
+    background: #ffffff;
+    border: 1px solid #b0b0b0;
+    margin-top: 40px;
+    margin-left: 12%;
+    padding: 30px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  
+  
+  .faq-sections label{
+  	  font-size:20px;
+  	  font-weight:700;
+      text-decoration: none;
+      display: inline-block;
+      width: 80%;
+      border-bottom: 1px solid #353535;
+      padding-bottom:5px;
+      color: #353535;
+      margin-top:25px;
+  }
+  .pp-sections label{
+  	  font-size:20px;
+  	  font-weight:700;
+      text-decoration: none;
+      display: inline-block;
+      width: 80%;
+/*       border-bottom: 1px solid #353535; */
+      padding-bottom:5px;
+      color: #353535;
+      margin-top:25px;
+  }
+  .menubars { 
+    display: none; 
+    color: #353535;
+    background-color: rgba(255, 255, 255, 0.7);
+    width:77.5%;
+    padding: 10px;
+    margin-bottom:20px;
+  }
+  label:hover{
+  	color:#004aad;
+  	cursor:pointer;
+  }
+  
+  /* 체크되면 메뉴를 표시하기 */
+  #check-btn1:checked ~ .menubars,
+  #check-btn2:checked ~ .menubars,
+  #check-btn3:checked ~ .menubars,
+  #check-btn4:checked ~ .menubars,
+  #check-btn5:checked ~ .menubars,
+  #check-btn6:checked ~ .menubars,
+  #check-btn7:checked ~ .menubars,
+  #check-btn8:checked ~ .menubars,
+  #check-btn9:checked ~ .menubars { 
+    display: block; 
+   border-top: 1px solid #353535;
+    
+  }
+  
+  /* 체크박스는 화면에서 감추기 */
+  #check-btn1, #check-btn2, #check-btn3, 
+  #check-btn4, #check-btn5, #check-btn6, 
+  #check-btn7, #check-btn8, #check-btn9
+   { 
+    display: none; 
+  }
+  
+  
+  
 
 
 
