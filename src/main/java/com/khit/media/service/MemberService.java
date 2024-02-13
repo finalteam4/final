@@ -1,11 +1,14 @@
 package com.khit.media.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.MemberDTO;
@@ -36,7 +39,24 @@ public class MemberService {
 		}
 	}
 
-	public void save(MemberDTO memberDTO) {
+	public void save(MemberDTO memberDTO, MultipartFile memberFile) throws Exception {
+		if(!memberFile.isEmpty()) {  //전달된 파일이 있으면
+			//저장 경로
+	         //배포 후 해당 경로 못찾음..
+	         //String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+	         
+	         UUID uuid = UUID.randomUUID();  //무작위 아이디 생성(중복파일의 이름을 생성해줌)
+	         String filename = uuid + "_" + memberFile.getOriginalFilename();  //원본 파일
+	         String filepath = "C:/springfiles/" + filename;
+	      
+	         //File 클래스 객체 생성
+	         File savedFile = new File(filepath); //실제 파일
+	         memberFile.transferTo(savedFile);
+	      
+	         //2. 파일 이름은 db에 저장
+	         memberDTO.setFilename(filename);
+	         memberDTO.setFilepath("/upload/" + filepath); //파일 경로 설정함
+		}
 		//1. 비밀번호 암호화
 		//2. 권한 설정
 		String encPW = pwEncoder.encode(memberDTO.getPassword());
@@ -46,6 +66,7 @@ public class MemberService {
 		//dto -> entity 변환 메서드
 		Member member = Member.toSaveEntity(memberDTO);
 		memberRepository.save(member);
+		
 	}
 
 	public List<MemberDTO> findAll() {
