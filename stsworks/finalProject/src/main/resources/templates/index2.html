@@ -6,8 +6,6 @@
 <!-- 파비콘 추가 -->
 <link rel="stylesheet" href="/css/style.css">
 <script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <!-- Main page -->
 <body>
@@ -84,13 +82,8 @@
 			<!-- 긴급재난문자(재난문자 api) -->
 			<div class="emergency-pinkBox">
 				<p class="e-title">긴급 재난문자</p>
-				
-				<div class="emergency-text" id="content">
-					<table id="result1" class="table" >
-						<tbody>
-							<!-- 데이터 출력 -->
-						</tbody>
-					</table>
+				<div class="emergency-text">
+					<p>재난문자html 만들고, javascript로 불러올 예정..</p>
 				</div>
 			</div>		
 			<!-- btn3 - 비상연락망, 재난유관기관, 기상특보 -->
@@ -126,7 +119,7 @@
 			<div class="earthQuake-behavior">
 				<p>지진 발생 시 이렇게 행동하세요 !</p>
 				<a th:href="@{/board/preparation}">
-				 	더보기&nbsp;<i class="fi fi-rr-arrow-circle-right" style="font-size:12px;"></i>
+				 	더보기&nbsp;<i class="fi fi-rr-arrow-circle-right" style="font-size:13px;"></i>
 				</a>
 			</div>
 			<!-- 행동요령 img -->
@@ -136,43 +129,6 @@
 		</div>
 	</section>
 <div th:replace="~{footer}"></div>
-<script>
-/* jquery 환경 - 버튼 클릭 이벤트 */
-	$(document).ready(function(){
-// 			alert("test...");
-			
-			$.ajax({
-				//요청방식(type), url, data,dataType, success, error
-				type: "GET",
-				url: "https://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List?serviceKey=3e6KfjqGd%2BSHh5QtxpCL6hAh8NyMv%2Bzbbz4btxYu3dmUvLkrW6msC23slFSCHRrGmyHzajC8cTa1OcvCICFebQ%3D%3D&pageNo=1&numOfRows=3&type=json",
-				dataType: "JSON",	//받는 데이터는 json 유형임을 명시 필수
-				success: function(data){
-					console.log(data);
-					
-					let itemArr = data.DisasterMsg[1].row;
-					
-					//테이블 작성
-					let value = ""; //태그 + data
-					for(let i=0; i<itemArr.length; i++){
-						let item = itemArr[i];	//각각의 인덱스에 객체 생성
-						value += "<tr>"
-	                            + "<td class='location-name'>" + item.location_name + "</td>"
-	                            + "<td class='item-msg'>" + item.msg + "</td>"
-	                            + "<td class='create-date'>" + item.create_date + "</td>"
-	                            + "</tr>";
-					};
-
-	                // 결과를 테이블에 삽입
-	                $("#result1 tbody").html(value);
-				},
-				error: function(error){
-					alert("에러 발생: " + error);
-				}
-			});
-		
-	});
-</script>
-
 <script src="/js/text-slide.js"></script>
 </body>
 

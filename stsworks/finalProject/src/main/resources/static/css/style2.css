@@ -342,14 +342,13 @@ footer{background: #353535;}
 	background:#DBE9F5;
 	}
 .emergency-circleBtn3-wrap{
-	max-width: 1024px;
+	 max-width: 1024px;
     display: flex;
     justify-content: center; 
     margin: 0 auto; 
     align-items: center; 
     height: 100%; /* align-items를 정확히 작동시키기 위해 */
 } 
-/* 긴급 재난문자 api 부분 */
 .emergency-pinkBox{
 	width:40%;
 	height:200px;
@@ -361,27 +360,7 @@ footer{background: #353535;}
     font-weight: 900;
     margin:15px 0 0 20px;
     }
-
- .emergency-text{text-align:center; margin-top:10px;} 
- .table tbody{font-size:14px;}
- .location-name{
- 	font-size:14px;
- 	font-weight:900;
- 	color: #05347e;
-/*  	white-space: nowrap; 텍스트를 한 줄로.. */
-    overflow: hidden; /* 넘치는 텍스트 숨김 */
-    text-overflow: ellipsis; /* 넘치는 텍스트의 끝을 ...으로 표시  */
-    
- }
- .item-msg{
- 	font-size:13px;
- }
- .create-date{
- font-size:12px;
- }
- 
- 
- 
+ .emergency-text{text-align:center; margin-top:10px;}   
  /* btn3 - 비상연락망, 재난유관기관, 기상특보 */   
  .useful-three-btn{ display:flex; width:60%; justify-content: flex-end; }
  .useful-btn{
