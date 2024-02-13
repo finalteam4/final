@@ -10,7 +10,10 @@
 <body>
 	<div th:replace="~{header}"></div>
 	<div id="pi-title">
-		<h3>전체글 목록</h3>	
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>전체게시판</h2>
 	</div>
 	<div id="content">
 		<div class="board_content">
@@ -86,8 +89,8 @@
 	                </select>
 					<input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
 							placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
-					<button type="submit" class="board_btn2">검색</button>
-			  		<!-- <a th:href = "@{/board/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a> -->
+					<button type="submit" class="board_btn2"><i class="fa-solid fa-magnifying-glass"></i></button>
+			  		<!-- <a th:href = "@{/board/write}"><button type="button" class="btn btn-outline-secondary"><i class="fi fi-rs-file-edit"></i></button></a> -->
 			  	</div>
 			  </form>
 			 </div>

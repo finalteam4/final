@@ -83,10 +83,11 @@ public class BoardService {
 			
 
 		}else{
-			 boardDTO.setFilename(findById(boardDTO.getId()).getFilename());
-	         boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
-			 board = Board.toUpdateNoFileBoardEntity(boardDTO);
-	    }
+			boardDTO.setFilename(findById(boardDTO.getId()).getFilename());
+			boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
+			board = Board.toUpdateBoardEntity(boardDTO);
+
+		}
 		
 	    boardRepository.save(board);		
 	}
