@@ -2,7 +2,14 @@ package com.khit.media.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.media.config.SecurityUser;
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.dto.MemberDTO;
+import com.khit.media.dto.ReplyDTO;
 import com.khit.media.entity.Member;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.MemberService;
@@ -21,6 +30,8 @@ import com.khit.media.service.ReplyService;
 import com.khit.media.service.ReportService;
 import com.khit.media.service.VoteService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -114,10 +125,44 @@ public class MemberController {
 		memberService.update(memberDTO);
 		return "redirect:/member/" + memberDTO.getId();
 	}
+
 	@GetMapping("/member/account")
-	public String account(@AuthenticationPrincipal SecurityUser principal, Model model) {
-		Member member = principal.getMember();
-		model.addAttribute("member", member);
-		return "member/account";
+	public String account(
+	        @AuthenticationPrincipal SecurityUser principal,
+	        @PageableDefault(page=1) Pageable pageable,
+	        Model model) {
+	    Page<BoardDTO> voteList = boardService.findVoteListAll2(principal.getMember().getName(), pageable);
+	    Page<BoardDTO> myBoardList = boardService.findByWriter2(principal.getMember().getName(), pageable);
+	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(principal.getMember().getName(), pageable);
+	    
+	    model.addAttribute("name", principal.getMember().getName());
+	    model.addAttribute("voteList", voteList);
+	    model.addAttribute("myBoardList", myBoardList);
+	    model.addAttribute("myReplyList", myReplyList);
+	    
+	    return "member/account";
+	}
+	
+	@GetMapping("/member/out")
+	public String signOut(
+			@AuthenticationPrincipal SecurityUser principal,
+			HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		LogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        LogoutSuccessHandler logoutSuccessHandler = (httpServletRequest, httpServletResponse, authentication) -> {
+            // 로그아웃 성공 후의 처리를 수행
+            SecurityContextHolder.clearContext(); // 현재 스레드의 SecurityContext를 제거
+        };
+
+        logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        logoutSuccessHandler.onLogoutSuccess(request, response, SecurityContextHolder.getContext().getAuthentication());
+
+		String name = principal.getMember().getName();
+		reportService.deleteByReporter(name);
+		voteService.deleteByVoter(name);
+		replyService.deleteByReplyer(name);
+		boardService.deleteByBoardWriter(name);
+		memberService.deleteById(principal.getMember().getId());
+		return "redirect:/";
 	}
 }
