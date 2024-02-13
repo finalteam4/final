@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+	<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+	<script src="https://kit.fontawesome.com/69798321c6.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<link rel="icon" href="/images/favicon-96x96.png" type="image/png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body>
+    <header th:fragment="header-fragment">
+    
+        <section id="planB-header">
+        
+            <div class="planB-sidemenu">
+            	<!-- 채채 페이지와 연결 -->
+            	<th:block sec:authorize="isAnonymous()" >
+	            	<a th:href="@{/login}">Log in</a>
+	            	<a th:href="@{/member/join}">Sign up</a>
+            	</th:block>
+            	<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a>
+            	
+            	<a th:href="@{/member/account}">Account</a>
+            </div>
+			
+            <div class="planB-menuWrap">
+            	<div class="main-img-logo">
+            		<a th:href="@{/}">
+            			<img th:alt="handmad_planB_logo" src="/images/planB-logo.png" style="width:60px; height:60px;">
+            		</a>
+            		<h2>안전한 대한민국,<br>PLAN B</h2>
+            	</div>
+          
+	            <div class="main-menu">
+	            	<a th:href="@{/contact/emer_contact}">재난 예방 대비</a>
+	            	<a th:href="@{/data/data2}">재난 현황</a>
+	            	<a th:href="@{/board/main}">참여와 신고</a>
+	            	<div class="menu-bot-img">
+            			<a><i class="fa-solid fa-robot" style="font-size:25px;"></i><span> FAQ안내봇</span></a>
+	            	</div>
+	            </div>
+            </div>
+            
+        </section>
+    </header>
+<script src="/js/favicon.js"></script>
+</body>
+</html>
+
+

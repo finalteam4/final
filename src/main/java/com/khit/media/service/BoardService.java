@@ -195,6 +195,23 @@ public class BoardService {
 		return boardDTOList;
 	}
 	
+	public Page<BoardDTO> findListAll5(Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;	//db가 1 작음
+		int pageSize = 5;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findAll(pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));				
+		return boardDTOList;
+	}	
+	
 	//임시
 	public Page<BoardDTO> findListAll(Pageable pageable, String c) {
 		int page = pageable.getPageNumber() - 1;	//db가 1 작음

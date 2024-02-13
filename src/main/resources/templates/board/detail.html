@@ -7,7 +7,9 @@
 </head>
 <body>
 <div th:replace="~{header}"></div>
-<h2 class="board_h2">글 상세보기</h2>
+	<div id="pi-title">
+		<h3>글 상세보기</h3>	
+	</div>
 	<div id="content">	
 		<div class="board_content">
 		<table class="tbl_detail">
@@ -46,7 +48,7 @@
 						    	추천
 						    </a>
 						    |
-						    <a th:href="@{|/boardreport/${board.id}|}">
+						    <a th:href="@{|/boardreport/${board.id}|}" onclick="return confirm('정말로 신고하시겠습니까?')">
 		                       신고
 		                    </a>
 					    </div>

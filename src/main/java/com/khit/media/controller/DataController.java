@@ -94,7 +94,7 @@ public class DataController {
         }
 
         // 렌더링할 뷰의 이름 반환
-        return "/data/data2";
+        return "data/data2";
     }
 
     // JSON에서 필드 값 가져오기, 값이 없으면 빈 문자열 반환
@@ -163,7 +163,7 @@ public class DataController {
         }
 
         // 렌더링할 뷰의 이름 반환
-        return "/data/data3";
+        return "data/data3";
     }
     @GetMapping("/data4")
     public String data4(Model model) {
@@ -225,7 +225,7 @@ public class DataController {
     	}
     	
     	// 렌더링할 뷰의 이름 반환
-    	return "/data/data4";
+    	return "data/data4";
     }
     @GetMapping("/data5")
     public String data5(ModelMap modelMap) {
@@ -283,7 +283,7 @@ public class DataController {
         }
         
         // 렌더링할 뷰의 이름 반환
-        return "/data/data5";
+        return "data/data5";
     }
 
     private String getStringFromItem(JSONObject item, String key) {
@@ -365,7 +365,7 @@ public class DataController {
         }
 
         // 렌더링할 뷰의 이름 반환
-        return "/data/data6";
+        return "data/data6";
     }
 
 
@@ -451,11 +451,11 @@ public class DataController {
      }
 
      // 렌더링할 뷰의 이름 반환
-     return "/data/data7";
+     return "data/data7";
  }
  @GetMapping("/data8")
  public String getData8() {
-	 return "/data/data8";
+	 return "data/data8";
  }
 }
   
