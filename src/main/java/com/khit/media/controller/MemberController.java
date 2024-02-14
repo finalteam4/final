@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.media.config.SecurityUser;
@@ -121,14 +123,15 @@ public class MemberController {
 	
 	//회원 수정 처리 - 상세보기로 이동
 	@PostMapping("/member/update")
-	public String update(@ModelAttribute MemberDTO memberDTO) {
-		memberService.update(memberDTO);
-		return "redirect:/member/" + memberDTO.getId();
+	public String update(@ModelAttribute MemberDTO memberDTO, MultipartFile memberFile) throws Exception {
+		memberService.update(memberDTO, memberFile);
+		return "redirect:/member/account";
 	}
-
+	
+	//회원 마이페이지
 	@GetMapping("/member/account")
 	public String account(
-	        @AuthenticationPrincipal SecurityUser principal,
+			@AuthenticationPrincipal SecurityUser principal,
 	        @PageableDefault(page=1) Pageable pageable,
 	        Model model) {
 	    Page<BoardDTO> voteList = boardService.findVoteListAll2(principal.getMember().getName(), pageable);
@@ -140,9 +143,12 @@ public class MemberController {
 	    model.addAttribute("myBoardList", myBoardList);
 	    model.addAttribute("myReplyList", myReplyList);
 	    
-	    return "member/account";
+	    Member member = principal.getMember();
+		model.addAttribute("member", member);
+		return "member/account";
 	}
 	
+	//회원탈퇴
 	@GetMapping("/member/out")
 	public String signOut(
 			@AuthenticationPrincipal SecurityUser principal,
@@ -165,4 +171,13 @@ public class MemberController {
 		memberService.deleteById(principal.getMember().getId());
 		return "redirect:/";
 	}
+	
+	//이메일 중복 검사
+	@PostMapping("/member/check-email")
+	public @ResponseBody String checkEmail(
+			@RequestParam("memberEmail") String memberEmail) {
+		String resultText = memberService.checkEmail(memberEmail);
+		return resultText;
+	}
+	
 }

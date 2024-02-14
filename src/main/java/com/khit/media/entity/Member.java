@@ -96,5 +96,6 @@ public class Member{
 				.build();
 		return member;
 	}
+
 	
 }

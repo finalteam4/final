@@ -23,16 +23,12 @@ public class MainController {
 	private final BoardService boardService;
 	
 	@GetMapping
-	public String index(@PageableDefault(page=1) Pageable pageable, Model model, HttpSession session) {
+	public String index(@PageableDefault(page=1) Pageable pageable, Model model) {
 		Page<BoardDTO> boardList = boardService.findListAll5(pageable);	
 		model.addAttribute("boardList", boardList);
 		BoardDTO notice = boardService.findNotice();
 		model.addAttribute("notice", notice);
 		
-		if(session != null) {
-		String id = (String) session.getAttribute("sessionId");
-        model.addAttribute("chatname", id);
-		}
 		return "index";	//index.html
 	}
 	

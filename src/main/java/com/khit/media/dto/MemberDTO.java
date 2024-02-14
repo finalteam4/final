@@ -1,7 +1,5 @@
 package com.khit.media.dto;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import com.khit.media.entity.Member;
 import com.khit.media.entity.Role;
