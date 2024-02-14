@@ -9,7 +9,12 @@
 </head>
 <body>
 <div th:replace="~{header}"></div>
-<h2 class="board_h2">질문게시판 댓글 수정</h2>	
+	<div id="pi-title">
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>질문게시판 댓글 수정</h2>
+	</div>
 	<div id="content">
 		<div class="board_content">
 		<div class="replyUpdateForm">
@@ -21,7 +26,7 @@
 				<table style="width: 100%;">
 					<tbody>
 						<tr>
-							<td><textarea name="rcontent" class="form-control" th:text="${reply.rcontent}"
+							<td><textarea name="rcontent" class="write-control" th:text="${reply.rcontent}"
 							rows="10" style="resize: none;"></textarea></td>
 						</tr>
 						<tr>
@@ -39,5 +44,6 @@
 		</div>
 		</div>
 	</div>
+	<div th:replace="~{footer}"></div>
 </body>
 </html>

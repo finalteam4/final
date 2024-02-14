@@ -6,28 +6,11 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<div th:replace="~{header}"></div>
+	<div id="pi-title">
+		<h3>지진</h3>	
+	</div>
 	<div class="main-main">
-	<div id="state_sub" class="bg_4">
-    <div class="stateWrap">
-                <strong>지진</strong>
-        <ul>
-                <li class="active"><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
-                <li class=""><a href=""><strong>산사태</strong></a></li>
-                <li class=""><a href=""><strong>대기오염</strong></a></li>
-                <li class=""><a href=""><strong>붕괴</strong></a></li>
-                <li class=""><a th:href="@{/data/data2}"><strong>산불</strong></a></li>
-        </ul>
-    </div>
-</div>
-	<div >
-	
-	
-	</div>
-	
-	</div>
-	
-	
-	
 	
 	
     <!--   테이블 시작 -->
@@ -64,5 +47,6 @@
         </tbody>
     </table> 
     <!-- 테이블 종료 -->
+    <div th:replace="~{footer}"></div>
 </body>
 </html>

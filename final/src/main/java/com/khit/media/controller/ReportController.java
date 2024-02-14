@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.BoardDTO;
+import com.khit.media.dto.ReplyDTO;
 import com.khit.media.dto.ReportDTO;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.ReplyService;
@@ -62,7 +63,7 @@ public class ReportController {
 		return "report/list";
 	}
 	
-	@GetMapping("/report/{boardId}")
+	@GetMapping("/boardreport/{boardId}")
 	public String report(@PathVariable Long boardId,
 			@AuthenticationPrincipal SecurityUser principal) {
 		List<ReportDTO> findReport = reportService.findByBoardIdAndReporter(boardId, principal.getMember().getName());
@@ -77,6 +78,21 @@ public class ReportController {
 		boardService.updateHits2(boardId);
 		boardService.updateReportCount(boardId);
 		return "redirect:/board/" + boardId;
+	}
+	
+	@GetMapping("/report/{id}")
+	public String getBoard(@PageableDefault(page=1) Pageable pageable, @PathVariable Long id, Model model) {
+		//조회수
+		boardService.updateHits(id);
+		boardService.updateReplyCount(id);
+		//글 상세보기
+		BoardDTO boardDTO = boardService.findById(id);
+		//댓글 목록
+		List<ReplyDTO> replyList = replyService.findByBoardId(id);
+		model.addAttribute("board", boardDTO);
+		model.addAttribute("replyList", replyList);
+		model.addAttribute("page", pageable.getPageNumber());
+		return "report/detail";
 	}
 	
 	@GetMapping("/inforeport/{boardId}")
@@ -129,6 +145,24 @@ public class ReportController {
 		boardService.updateReportCount(boardId);
 		return "redirect:/qnaboard/" + boardId;
 	}
+	
+	@GetMapping("/reportreport/{boardId}")
+	public String boardReport(@PathVariable Long boardId,
+			@AuthenticationPrincipal SecurityUser principal) {
+		List<ReportDTO> findReport = reportService.findByBoardIdAndReporter(boardId, principal.getMember().getName());
+		if(findReport.isEmpty()) {
+			ReportDTO report = new ReportDTO();
+			report.setBoardId(boardId);
+			report.setReporter(principal.getMember().getName());
+			reportService.save(report);
+		}else {
+			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());
+		}
+		boardService.updateHits2(boardId);
+		boardService.updateReportCount(boardId);
+		return "redirect:/report/" + boardId;
+	}
+	
 	@GetMapping("/report/delete/{id}")
 	public String deleteReport(@PathVariable Long id) {
 		boardService.delete(id);

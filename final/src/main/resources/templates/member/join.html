@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<meta name="_csrf" th:content="${_csrf.token}">
 <title>회원가입...</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -22,14 +24,11 @@
 		  		<li>
 		  			<label for="memberId">아이디</label>
 		  			<input type="text" th:field="*{memberId}" id="memberId"
-		  			       onblur="checkMemberId()"
 										placeholder="영문, 숫자 포함 5자리이상 입력">
 		  			<p th:if="${#fields.hasErrors('memberId')}" 
 		  			   th:errors="*{memberId}" class="error"></p>
 		  		</li>
-		  		<li>
-		  			<p id="check-result"></p>
-		  		</li>
+		  		
 		  		<li>
 				    <label for="memberFile">사진</label>
 				    <input type="file" name="memberFile">
@@ -53,9 +52,13 @@
 		  		</li>
 		  		<li>
 		  			<label for="memberEmail">이메일</label>
-		  			<input type="text" th:field="*{memberEmail}" id="memberEmail">
+		  			<input type="text" th:field="*{memberEmail}" name="memberEmail" id="memberEmail"
+		  						onblur="checkEmail()">
 		  			<p th:if="${#fields.hasErrors('memberEmail')}" 
 		  			   th:errors="*{memberEmail}" class="error"></p>
+		  		</li>
+		  		<li>
+		  			<p id="check-result"></p>
 		  		</li>
 		  		<li>
 		  			<label for="memberAge">생년월일</label>
@@ -127,31 +130,36 @@
 	</div>
 <script>
 
-	const checkEmail = () => {
-		//alert("test...");
-		let inputEmail = document.getElementById("memberEmail").value;
-		let checkResult = document.getElementById("check-result");
-		//console.log("입력된 이메일: ", inputEmail);
-		
-		$.ajax({
-			type: "POST",
-			url: "/member/check-email",
-			data: { memberEmail: inputEmail },  //파라미터: memberEmail
-			success: function(res){  //res - 결과 문자열이 반환됨
-				console.log("성공: ", res);
-				if(res == "OK"){
-					checkResult.innerHTML = "사용가능한 이메일입니다.";
-					checkResult.style.color = "green";
-				}else{ //res == "NO"
-					checkResult.innerHTML = "이미 가입된 이메일입니다.";
-					checkResult.style.color = "#b00";
-				}
-			},
-			error: function(err){
-				console.log("실패: ", err);
+const checkEmail = () => {
+	//alert("test...");
+	let inputEmail = document.getElementById("memberEmail").value;
+	let checkResult = document.getElementById("check-result");
+	//console.log("입력된 이메일: ", inputEmail);
+	let header = $("meta[name='_csrf_header']").attr('content');
+		let token = $("meta[name='_csrf']").attr('content');
+	
+	$.ajax({
+		type: "POST",
+		beforeSend: function(xhr){
+	        xhr.setRequestHeader(header, token);
+	    },
+		url: "/member/check-email",
+		data: { memberEmail: inputEmail },  //파라미터: memberEmail
+		success: function(res){  //res - 결과 문자열이 반환됨
+			console.log("성공: ", res);
+			if(res == "OK"){
+				checkResult.innerHTML = "사용가능한 이메일입니다.";
+				checkResult.style.color = "green";
+			}else{ //res == "NO"
+				checkResult.innerHTML = "이미 가입된 이메일입니다.";
+				checkResult.style.color = "#b00";
 			}
-		});
-	};
+		},
+		error: function(err){
+			console.log("실패: ", err);
+		}
+	});
+};
 </script>
 </div>
 </body>

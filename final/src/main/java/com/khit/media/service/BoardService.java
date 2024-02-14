@@ -83,10 +83,11 @@ public class BoardService {
 			
 
 		}else{
-			 boardDTO.setFilename(findById(boardDTO.getId()).getFilename());
-	         boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
-			 board = Board.toUpdateNoFileBoardEntity(boardDTO);
-	    }
+			boardDTO.setFilename(findById(boardDTO.getId()).getFilename());
+			boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
+			board = Board.toUpdateBoardEntity(boardDTO);
+
+		}
 		
 	    boardRepository.save(board);		
 	}
@@ -194,6 +195,23 @@ public class BoardService {
 				board.getUpdatedDate()));				
 		return boardDTOList;
 	}
+	
+	public Page<BoardDTO> findListAll5(Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;	//db가 1 작음
+		int pageSize = 5;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findAll(pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));				
+		return boardDTOList;
+	}	
 	
 	//임시
 	public Page<BoardDTO> findListAll(Pageable pageable, String c) {
@@ -383,5 +401,56 @@ public class BoardService {
 				board.getUpdatedDate()));
 		return boardDTOList;
    	}
+
+	public Page<BoardDTO> findVoteListAll2(String voter, Pageable pageable) {
+		int page1 = pageable.getPageNumber() - 1;
+		int pageSize = 3;
+		pageable = PageRequest.of(page1, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findVoteListAll(voter, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
+		return boardDTOList;
+	}
+
+	public Page<BoardDTO> findByWriter2(String name, Pageable pageable) {
+	    int page2 = pageable.getPageNumber() - 1;
+	    int pageSize = 3;
+	    pageable = PageRequest.of(page2, pageSize, Sort.Direction.DESC, "id");
+
+	    Page<Board> boardList = boardRepository.findByBoardWriter(name, pageable); // 수정된 부분
+	    Page<BoardDTO> boardDTOList = boardList.map(board ->
+	        new BoardDTO(board.getId(), board.getBoardTitle(),
+	                board.getBoardWriter(), board.getBoardContent(),
+	                board.getBoardCategory(), board.getBoardHits(),
+	                board.getReplyCount(), board.getLikeCount(),
+	                board.getReportCount(), board.getFilename(),
+	                board.getFilepath(), board.getCreatedDate(),
+	                board.getUpdatedDate()));
+	    return boardDTOList;
+	}
+
+	public Page<BoardDTO> findVoteListAll(String voter, Pageable pageable) {
+		int page1 = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page1, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findVoteListAll(voter, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
+		return boardDTOList;
+	}
 	
 }

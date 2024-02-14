@@ -8,24 +8,11 @@
    
 </head>
 <body>
-	<div th:replace="~{header}"></div>
+<div th:replace="~{header}"></div>
+	<div id="pi-title">
+		<h3>산불</h3>	
+	</div>
 	<div class="main-main">
-	<div id="state_sub" class="bg_4">
-    <div class="stateWrap">
-                <strong>산불</strong>
-        <ul>
-                <li class=""><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
-                
-                <li class=""><a href=""><strong>산사태</strong></a></li>
-                
-                <li class=""><a href=""><strong>대기오염</strong></a></li>
-                <li class=""><a href=""><strong>붕괴</strong></a></li>
-                
-                <li class="active"><a href=""><strong>산불</strong></a></li>
-                
-        </ul>
-    </div>
-</div>
 		<div class="Area">
 			<div class="leftArea">
 				<img alt="" src="/images/산불.png">
@@ -290,6 +277,7 @@
 			</div>
 		</div>
 	</div>
+<div th:replace="~{footer}"></div>
 	<script>
   // JavaScript 코드
 

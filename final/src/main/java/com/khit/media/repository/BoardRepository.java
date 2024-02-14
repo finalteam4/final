@@ -49,6 +49,11 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Modifying
     @Query(value="UPDATE Board b SET b.reportCount = (SELECT count(t.id) FROM Report t WHERE t.boardId = :id) WHERE b.id = :id")
 	public void updateReportCount(Long id);
+	
+	@Query(value = "SELECT b FROM Board b JOIN Vote v ON b.id = v.boardId WHERE v.voter = :voter")
+	Page<Board> findVoteListAll(String voter, Pageable pageable);
+
+	Page<Board> findByBoardWriter(String name, Pageable pageable);
 
 
 }

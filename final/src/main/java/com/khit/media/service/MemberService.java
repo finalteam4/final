@@ -61,7 +61,7 @@ public class MemberService {
 		//2. 권한 설정
 		String encPW = pwEncoder.encode(memberDTO.getPassword());
 		memberDTO.setPassword(encPW);
-		memberDTO.setRole(Role.ADMIN);
+		memberDTO.setRole(Role.MEMBER);
 		
 		//dto -> entity 변환 메서드
 		Member member = Member.toSaveEntity(memberDTO);
@@ -106,16 +106,60 @@ public class MemberService {
 		MemberDTO memberDTO = MemberDTO.toSaveDTO(member.get());
 		return memberDTO;
 	}
-
-	public void update(MemberDTO memberDTO) {
-		//암호화, 권한 설정
-		String encPW = pwEncoder.encode(memberDTO.getPassword());
-		memberDTO.setPassword(encPW);
-		memberDTO.setRole(Role.MEMBER);
-		
-		//변환시 엔티티 메서드를 toSaveUpdate()로 바꿔줌
-		Member member = Member.toSaveUpdate(memberDTO);
-		
-		memberRepository.save(member);
+	
+	public MemberDTO findByMemberEmail(String email) {
+		//db에서 이메일로 검색한 회원 객체 가져오고
+		Member member = memberRepository.findByMemberEmail(email).get();
+		//회원 객체(엔티티)를 dto로 변환
+		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+		return memberDTO;
 	}
+
+	public void update(MemberDTO memberDTO, MultipartFile memberFile) throws Exception {
+		Member member;
+		if (!memberFile.isEmpty()) {
+			
+			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
+			
+			String filename = uuid.toString() + "_" + memberFile.getOriginalFilename();	//원본 파일
+			String filepath = "C:/springfiles/" + filename;
+			
+			//File 클래스로 객체 생성
+			File savedFile = new File(filepath);	//upload 폴더에 저장
+			memberFile.transferTo(savedFile);	//서버 폴더에 저장
+		
+		//2. 파일 이름은 db에 저장
+			memberDTO.setFilename(filename);
+			memberDTO.setFilepath(filepath);
+			member = Member.toSaveUpdate(memberDTO);
+			
+
+		}else{
+			memberDTO.setFilename(findById(memberDTO.getId()).getFilename());
+			memberDTO.setFilepath(findById(memberDTO.getId()).getFilepath());
+			member = Member.toSaveUpdate(memberDTO);
+
+		}
+		
+		//암호화, 권한 설정
+				String encPW = pwEncoder.encode(memberDTO.getPassword());
+				memberDTO.setPassword(encPW);
+				memberDTO.setRole(Role.MEMBER);
+				
+				//변환시 엔티티 메서드를 toSaveUpdate()로 바꿔줌
+				member = Member.toSaveUpdate(memberDTO);
+				
+				memberRepository.save(member);		
+	}
+
+	public String checkEmail(String memberEmail) {
+		//db에 있는 이메일 조회해서 있으면 "OK" 아니면 "NO"를 보냄
+		Optional<Member> findMember = memberRepository.findByMemberEmail(memberEmail);
+		if(findMember.isEmpty()) { //db에 회원이 없으면 가입해도 되는("OK") 문자 반환
+			return "OK";
+		}else {
+			return "NO";
+		}
+	}
+
 }

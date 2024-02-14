@@ -29,9 +29,9 @@ public class SecurityConfig {
 		http
 		  .authorizeHttpRequests(authorize -> authorize
 				  .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error", "/ex/**",
-						  "/board/", "/infoboard/", "/noticeboard/", "/qnaboard/", "/board/").permitAll()
+						  "/board/", "/infoboard/", "/noticeboard/", "/qnaboard/", "/board/", "/pages/**").permitAll()
 				  .requestMatchers("/infoboard/**", "/qnaboard/**", "/noticeboard/**", "/board/**",  
-						  "/noticereply/**", "/inforeply/**", "/qnareply/**",
+						  "/noticereply/**", "/inforeply/**", "/qnareply/**", "/member/account",
 						  "/noticevote/**", "/infovote/**", "/qnavote/**", "/reply/**", "/vote/**").authenticated()
 				  .requestMatchers("/member/list", "/noticeboard/write").hasAnyAuthority("ADMIN")
 				  .requestMatchers("/member/**", "/data/**", "/contact/**").permitAll()

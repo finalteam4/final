@@ -11,14 +11,14 @@
 	<div id="container">
 	  <section id="update">
 		<h2>회원 수정</h2>
-		<form th:action="@{/member/update}" method="post">
+		<form th:action="@{/member/update}" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" th:value="${member.id}">
 		   <fieldset>
 		  	<ul>
 		  		<li>
 		  			<label for="profile">사진</label>
-		  			<input type="file" name="profile"
-		  			    id="profile" th:value="${member.profile}">
+		  			<input type="file" name="memberFile"
+		  			    id="filename" th:value="${member.filename}">
 		  		</li>
 		  		<li>
 		  			<label for="memberId">아이디</label>
@@ -75,7 +75,7 @@
 		  		</li>
 		  	    <li>
 		  			<button type="submit" id="updatef">저장</button>
-		  			<button type="reset" id="updatef">취소</button>
+		  			<a th:href="@{/member/account}"><button type="button" id="updatef">취소</button></a>
 		  		</li>
 		  	 </ul>
 	  	    </fieldset>

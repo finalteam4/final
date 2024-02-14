@@ -9,12 +9,17 @@
 </head>
 <body>
    <div th:replace="~{header}"></div>
-<h2 class="board_h2">제보게시판</h2>
+	<div id="pi-title">
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>제보게시판</h2>
+	</div>
    <div id="content">
       <div class="board_content">
       <table class="tbl_list">
          <thead>
-            <tr style="border-bottom: 2px solid #000; height: 50px;">
+            <tr>
                <th scope="col"><a th:href="@{/infoboard/}">지역</a></th>
                <th scope="col">글제목</th>
                <th scope="col">글쓴이</th>
@@ -24,21 +29,21 @@
             </tr>
          </thead>
          <tbody>
-         	<tr th:if="${notice != null}" style="background:#ddd; border-bottom: 1px solid #000; height: 50px;">
+         	<tr th:if="${notice != null}" style="background:#ddd;">
 				<th><a th:href="@{/noticeboard/}">공지사항</a></th>
 				<td class="td_title" style="width:200px;">
 				    <a th:href="@{|/noticeboard/${notice.id}|}">
 				    	<span th:text="${notice.boardTitle}"></span>
-				    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
+				    	<span class="reply_count" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
 				    </a>
 				</td>
 
                 <td th:text="${notice.boardWriter}"></td>
                 <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
                 <td th:text="${notice.boardHits}"></td>
-                <td th:text="${notice.likeCount}"></td>
+                <td th:text="${notice.likeCount}"><th:block th:if="${board.likeCount == null}" th:text="0"></th:block></td>
             </tr>
-            <tr th:each="board : ${boardList}" style="border-bottom: 1px solid #000; height: 50px;">
+            <tr th:each="board : ${boardList}">
                 <th>
                 	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
                 	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
@@ -52,7 +57,7 @@
                 <td class="td_title" style="width:40%;">
                    <a th:href="@{|/infoboard/${board.id}|(page=${boardList.number+1})}">
                       <span th:text="${board.boardTitle}"></span>
-                      <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+                      <span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
                    </a>
                </td>
 
@@ -97,12 +102,17 @@
                    </select>
                <input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
                      placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
-               <button type="submit" class="board_btn2">검색</button>
-                 <a th:href = "@{/infoboard/write}"><button type="button" class="board_btn1">글쓰기</button></a>
+               <button type="submit" class="board_btn2"><i class="fa-solid fa-magnifying-glass"></i></button>
+				<a th:href = "@{/qnaboard/write}">
+	                 <button type="button" class="board_btn1">
+	                 	<i class="fa-solid fa-pencil"></i>
+	                 </button>
+                 </a>              
               </div>
            </form>
           </div>
       </div>
    </div>
+   <div th:replace="~{footer}"></div>
 </body>
 </html>
