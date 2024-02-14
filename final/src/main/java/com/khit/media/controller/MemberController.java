@@ -89,6 +89,15 @@ public class MemberController {
 		return "member/list";
 	}
 	
+	//회원 상세 보기
+	@GetMapping("/member/{id}")
+	public String getMember(@PathVariable Integer id,
+			Model model) {
+		MemberDTO memberDTO = memberService.findById(id);
+		model.addAttribute("member", memberDTO);
+		return "member/detail";
+	}
+	
 	//회원 삭제
 	@GetMapping("/member/delete/{id}")
 	public String deleteMember(@PathVariable Integer id) {
@@ -118,7 +127,8 @@ public class MemberController {
 		memberService.update(memberDTO, memberFile);
 		return "redirect:/member/account";
 	}
-
+	
+	//회원 마이페이지
 	@GetMapping("/member/account")
 	public String account(
 			@AuthenticationPrincipal SecurityUser principal,
@@ -138,6 +148,7 @@ public class MemberController {
 		return "member/account";
 	}
 	
+	//회원탈퇴
 	@GetMapping("/member/out")
 	public String signOut(
 			@AuthenticationPrincipal SecurityUser principal,
@@ -160,6 +171,7 @@ public class MemberController {
 		memberService.deleteById(principal.getMember().getId());
 		return "redirect:/";
 	}
+	
 	//이메일 중복 검사
 	@PostMapping("/member/check-email")
 	public @ResponseBody String checkEmail(
@@ -167,4 +179,5 @@ public class MemberController {
 		String resultText = memberService.checkEmail(memberEmail);
 		return resultText;
 	}
+	
 }

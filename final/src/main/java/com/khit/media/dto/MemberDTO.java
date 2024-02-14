@@ -1,7 +1,5 @@
 package com.khit.media.dto;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import com.khit.media.entity.Member;
 import com.khit.media.entity.Role;
@@ -70,22 +68,6 @@ public class MemberDTO {
 		
 		return memberDTO;
 	}
-	public static MemberDTO toUpdateNoFile(Member member) {
-		MemberDTO memberDTO = MemberDTO.builder()
-				.id(member.getId())
-				.memberId(member.getMemberId())
-				.password(member.getPassword())
-				.name(member.getName())
-				.memberEmail(member.getMemberEmail())
-				.memberAge(member.getMemberAge())
-				.mnumber(member.getMnumber())
-				.memberArea(member.getMemberArea())				
-				.role(member.getRole())
-				.filename(member.getFilename())
-				.filepath(member.getFilepath())
-				.build();
-		
-		return memberDTO;
-	}
+
 
 }

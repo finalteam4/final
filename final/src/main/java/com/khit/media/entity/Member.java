@@ -96,19 +96,6 @@ public class Member{
 				.build();
 		return member;
 	}
-	public static Member toUpdateNoFileMemberEntity(MemberDTO memberDTO) {
-		Member member = Member.builder()
-				.id(memberDTO.getId())
-				.memberId(memberDTO.getMemberId())
-				.password(memberDTO.getPassword())
-				.name(memberDTO.getName())
-				.memberEmail(memberDTO.getMemberEmail())
-				.memberAge(memberDTO.getMemberAge())
-				.mnumber(memberDTO.getMnumber())
-				.memberArea(memberDTO.getMemberArea())
-				.role(memberDTO.getRole())
-				.build();
-		return member;
-	}
+
 	
 }
