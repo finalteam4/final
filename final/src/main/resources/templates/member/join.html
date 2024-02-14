@@ -15,8 +15,8 @@
 	  <section id="join">
 		<h2>회원 가입</h2>
 		<form th:action="@{/member/join}" method="post"  
-		enctype="multipart/form-data"
-			class="joinform" th:object="${memberDTO}">
+		enctype="multipart/form-data" name="users"
+			class="joinform" th:object="${memberDTO}" onsubmit="return checkUser();">
 		  <fieldset>
 		  	<ul>
 		  		
@@ -128,6 +128,9 @@
 		</form>
 	  </section>
 	</div>
+
+</div>
+</body>
 <script>
 
 const checkEmail = () => {
@@ -160,7 +163,34 @@ const checkEmail = () => {
 		}
 	});
 };
+/*
+function checkUser(){
+    
+    let form = document.forms["users"];
+    let id = form["memberId"].value;
+    let pw1 = form["password"].value;
+    let pw2 = form["password2"].value;
+    let name = form["name"].value;
+	
+    // 정규 표현식
+    let regexPw1 = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*()_+|]).{8,}$/; // 숫자, 영문자, 특수문자 포함 8자 이상
+    let regexName = /^[가-힣]+$/;  // 한글만
+    
+    if (id.length < 5) { // 아이디는 최소 5자리 이상
+        alert("아이디는 5자 이상 입력해주세요.");
+        return false;
+    } else if (pw1.length < 8 || !regexPw1.test(pw1)) {
+        alert("비밀번호는 영문자, 숫자, 특수문자를 모두 포함하여 8자 이상 입력해주세요.");
+        return false;
+    } else if (pw1 !== pw2) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+    } else if (name.length < 3) {
+        alert("이름은 3글자이상 입력해주세요.");
+        return false;
+    } else {
+        form.submit();  // 오류가 없으면 폼을 메인 컨트롤러로 전송
+    }
+}*/
 </script>
-</div>
-</body>
 </html>
