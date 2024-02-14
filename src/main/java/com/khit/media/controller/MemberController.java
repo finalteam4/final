@@ -134,17 +134,18 @@ public class MemberController {
 			@AuthenticationPrincipal SecurityUser principal,
 	        @PageableDefault(page=1) Pageable pageable,
 	        Model model) {
-	    Page<BoardDTO> voteList = boardService.findVoteListAll2(principal.getMember().getName(), pageable);
-	    Page<BoardDTO> myBoardList = boardService.findByWriter2(principal.getMember().getName(), pageable);
-	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(principal.getMember().getName(), pageable);
+		MemberDTO memberDTO = memberService.findById(principal.getMember().getId());
+		String name = memberDTO.getName();
+	    Page<BoardDTO> voteList = boardService.findVoteListAll2(name, pageable);
+	    Page<BoardDTO> myBoardList = boardService.findByWriter2(name, pageable);
+	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(name, pageable);
 	    
-	    model.addAttribute("name", principal.getMember().getName());
+	    model.addAttribute("member", memberDTO);
+	    model.addAttribute("name", name);
 	    model.addAttribute("voteList", voteList);
 	    model.addAttribute("myBoardList", myBoardList);
 	    model.addAttribute("myReplyList", myReplyList);
-	    
-	    Member member = principal.getMember();
-		model.addAttribute("member", member);
+		
 		return "member/account";
 	}
 	

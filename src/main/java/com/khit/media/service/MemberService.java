@@ -131,25 +131,23 @@ public class MemberService {
 		//2. 파일 이름은 db에 저장
 			memberDTO.setFilename(filename);
 			memberDTO.setFilepath(filepath);
-			member = Member.toSaveUpdate(memberDTO);
 			
 
 		}else{
 			memberDTO.setFilename(findById(memberDTO.getId()).getFilename());
 			memberDTO.setFilepath(findById(memberDTO.getId()).getFilepath());
-			member = Member.toSaveUpdate(memberDTO);
 
 		}
 		
 		//암호화, 권한 설정
-				String encPW = pwEncoder.encode(memberDTO.getPassword());
-				memberDTO.setPassword(encPW);
-				memberDTO.setRole(Role.MEMBER);
-				
-				//변환시 엔티티 메서드를 toSaveUpdate()로 바꿔줌
-				member = Member.toSaveUpdate(memberDTO);
-				
-				memberRepository.save(member);		
+		String encPW = pwEncoder.encode(memberDTO.getPassword());
+		memberDTO.setPassword(encPW);
+		memberDTO.setRole(Role.ADMIN);
+		
+		//변환시 엔티티 메서드를 toSaveUpdate()로 바꿔줌
+		member = Member.toSaveUpdate(memberDTO);
+		
+		memberRepository.save(member);		
 	}
 
 	public String checkEmail(String memberEmail) {
