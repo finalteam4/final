@@ -245,45 +245,69 @@ footer{background: #353535;}
 	background: #ffffff;
 	border: 1px solid #B0B0B0;
 }
-/* 날씨정보 - 내 위치, 발표 기준 시간 */
-.myLocation-time{
-	display:flex; 
-	align-items: center;
-	justify-content: space-between;
-	padding: 25px 20px 20px 20px
-	}
-.myLocation-time p{font-size:15px;}
-#referenceTime{font-size:13px; color:#9496A3; }
-
-/* 날씨정보 - 날씨정보와 미세먼지 타이틀 */
-.weather-title{
-	display:flex; 
-	justify-content: space-around;
-	margin-top: 15px;
-	}
-.weather-title p{font-size:20px; font-weight:900;}
-
 /* 날씨정보 콘텐츠 박스 */
 .weather-contentWrap{
 	display:flex; 
 	width:100%; 
 	margin-top: 5px;
 	}
-/* 날씨정보 - 하늘상태, 기온, 체감온도, 습도 */
-.content-temperature{
-	width:50%; 
-	margin-top:10px;
-	padding-top:10px;
+	
+/* 날씨정보 - 현재기온, 최저기온, 최고기온 */
+.today-weather-wrap{
+	width: 50%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    
 }
-.icon-temp{ 
-	font-weight:900; 
-	font-size:50px; 
-	text-align:center;
-	margin-bottom:20px;
-	}
+.today-weather-wrap .today-title{
+	font-size:22px;
+	font-weight:900;
+}
+/* 현재 기온*/
+.now-temperatures{
+	display:flex;
+	align-items: center;
+	margin-right: 30px;
+}
+.weather-icons{
+	width:110px;
+}
+.SeoulNowtemp{
+	font-weight:900;
+	font-size:35px;
+}
+/* 최고 기온 */
+.high-temperatures{
+	display:flex;
+	width: 60%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.row-high-temp{
+	font-size:20px;
+	color: #9496A3;
+	font-weight:700;
+}
+.SeoulHightemp{
+	color: #ff2424;
+	font-weight:900;
+	font-size:20px;
+}
 
-.windchill-humidity{display:flex; justify-content: space-evenly;}
-.windchill-humidity p{color:#9496A3; font-weight:700;}
+/* 최저 기온 */
+.row-temperatures{
+	display:flex;
+	width: 60%;
+    justify-content: space-around;
+}
+.SeoulLowtemp{
+	color:#0094ff;
+	font-weight:900;
+	font-size:20px;
+}
+
 
 /* 날씨정보 - 미세먼지 농도 */
 .content-fineDust{
