@@ -104,6 +104,7 @@ nav ul ul ul {
     transition: .2s ease-in-out, background-color 0s;
     transform: translateY(-20px);
     border-bottom: 3px solid #004aad; 
+    z-index: 11;
 /*     border-bottom-left-radius:30px; */
 /*     border-bottom-right-radius:30px; */
 }
@@ -533,7 +534,7 @@ footer{background: #353535;}
 	background: #ffffff;
 	margin: -1px 0 0 -1px;
     box-sizing: border-box;
-    z-index:1;
+    z-index:11;
 }
 .pi-img-btn div{
     white-space: normal;
@@ -542,7 +543,7 @@ footer{background: #353535;}
     }
 
 .pi-img-btn li:hover{
-	z-index:2;
+	z-index:20;
 	border: 1.5px solid #004aad;
 }
 .pi-btn1{

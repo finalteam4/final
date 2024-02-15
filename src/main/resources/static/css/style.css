@@ -540,7 +540,7 @@ ul li{list-style: none;}
 	max-width: 1024px;
 	margin: 40px auto;
 	margin-bottom: 104px;
-	padding: 20px 0px;
+	padding: 25px 0px;
 }
 
 .semi_title h2{
@@ -673,7 +673,7 @@ ul li{list-style: none;}
 
 .toggle_btn{
    width: 80px; 
-   height: 25px; 
+   height: 27px; 
    border: 1px solid #004AAD; 
    border-radius: 5px; 
    text-align: center;
@@ -738,6 +738,17 @@ ul li{list-style: none;}
 	margin-top:10px;
 	border-color:#ccc;
 }
+.rtitle{
+	color: rgba(0, 0, 0, 0.8);
+	font-weight: bold;
+}
+.replyer{
+	color: rgba(0, 0, 0, 0.5);
+}
+.rdate{
+	color: rgba(0, 0, 0, 0.5);
+}
+
 #rcontent{
 	width:100%;
 }

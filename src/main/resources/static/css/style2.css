@@ -1,13 +1,19 @@
-@charset "UTF-8";
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
-
-/* 공통스타일 */
-* {margin: 0; padding: 0;  font-family: 'NanumSquareRound';}
-
-html, body{color: #353535; background: #e9e9e9;}
-ul li{list-style: none;}
-a {text-decoration: none; color: #353535; font-weight:900;}
-a:hover{text-decoration: none; color: #004aad; font-weight:900;}
+*{
+	margin: 0;
+    padding: 0;
+    list-style: none;
+}
+body {
+     background-color: #e9e9e9;
+}
+a{
+	text-decoration: none; /* 밑줄 제거 */
+}
+.main-main {
+	width:1024px;
+    
+    margin: 0 auto;
+}
 
 #pi-title{
 	width:100%;
@@ -22,8 +28,6 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
 	font-weight:700;
 	font-size:30px;
 }
-
-
 
 
 /* 메뉴 */
@@ -143,10 +147,16 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
     padding: 10px;
   }
   .swiper-container-horizontal {
+ margin-top: 20px;
     position: relative;
     display: flex;
-    justify-content: space-around;
+   	 justify-content: flex-start;
   }
+  
+  .swiper-slide ul{
+  	border: 1px solid #eee;
+  }
+  
   .swiper-wrapper {
     list-style: none;
     padding: 0;
@@ -165,11 +175,65 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
   .swiper-slide a:hover {
     background-color: #f0f0f0;
   }
+  .rightArea .todayArea ul li span {
+    display: block;
+    font-size: 32px;
+    font-weight: 500;
+    vertical-align: top;
+    text-align: center;
+    line-height: 1em;
+}
+.rightArea .todayArea ul li:nth-of-type(1) strong:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 25px;
+    height: 25px;
+    transform: translateY(-50%);
+    background: url(/images/ico_common.png) no-repeat -125px -425px;
+}
+.rightArea .todayArea ul li:nth-of-type(2) strong:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 25px;
+    height: 25px;
+    transform: translateY(-50%);
+    background: url(/images/ico_common.png) no-repeat -125px -450px;
+}
+.rightArea .todayArea ul li:nth-of-type(3) strong:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 25px;
+    height: 25px;
+    transform: translateY(-50%);
+    background: url(/images/ico_common.png) no-repeat -125px -475px;
+}
+.rightArea .todayArea ul li strong {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 14px;
+    margin-right: 26px;
+    padding-left: 30px;
+    font-weight: 500;
+    font-size: 20px;
+    vertical-align: top;
+    line-height: 1em;
+}
+.termsText {
+    margin-top: 30px;
+    border-top: 1px solid #b2b2b2;
+
+}
+.terms317,.terms318,.terms320 {
+	margin-top: 30px;
+}
+
  /* 산불끝 */
-
-
-
-
 /* 지진 */
 .top-top-top-left {
 	float: left;
@@ -201,7 +265,10 @@ a:hover{text-decoration: none; color: #004aad; font-weight:900;}
     padding: 8px; /* 셀 내부 여백 지정 */
     text-align: center; /* 셀 안의 텍스트를 가운데 정렬 */
 }
-
+.midtable h2{
+	margin-top: 140px;
+	text-align: center;
+}
 /* 테이블 헤더 스타일링 */
 .table-table-wlwls th {
     background-color: #f2f2f2; /* 헤더 배경색 지정 */
@@ -295,6 +362,167 @@ img {
     width: 1000px; 
     margin: 0 auto;
 } 
+#layerArea.earthquakePop .pop_close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 25px;
+    height: 25px;
+    background: url(/images/ico_common.png) no-repeat -25px -375px;
+}
+#layerArea.earthquakePop .earthquakePopWrap strong {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+#layerArea.earthquakePop .earthquakePopWrap .imgArea .imgWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+#layerArea.earthquakePop .earthquakePopWrap .imgArea {
+    display: block;
+    width: 578px;
+    height: 572px;
+    box-sizing: border-box;
+    table-layout: fixed;
+}
+#wrap {
+    position: relative;
+    z-index: 1;
+}
+.btnMap {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    z-index: 1;
+}
+.btnMap:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 25px;
+    height: 25px;
+    transform: translate(-50%, -50%);
+    background: url(/images/ico_common.png) no-repeat -75px -375px;
+}
+element.style {
+    visibility: visible;
+    margin-top: -345px;
+    margin-left: -309px;
+}
+#blockArea {
+    /* 팝업이 페이지 시작 시에 숨겨지도록 display: none;으로 설정합니다. */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+}
+script {
+    display: none;
+}
+@media (max-width: 768px) {
+    .top-top-top-left img {
+        width: 300px;
+        height: 450px;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .top-top-top-right {
+        display: block;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .table-table-wlwls {
+        margin: 10px;
+        width: auto;
+    }
+
+    .midtable h2 {
+        margin-top: 20px;
+    }
+
+    .tableTypeF {
+        width: auto;
+        margin: 0 auto;
+    }
+
+    #layerArea.earthquakePop {
+        width: auto;
+        height: auto;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    #layerArea {
+        width: 90%;
+        height: 90%;
+        max-width: 90%;
+        max-height: 90%;
+        left: 5%;
+        top: 5%;
+    }
+
+    #layerArea.earthquakePop .pop_close {
+        right: 10px;
+        top: 10px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap {
+        padding: 20px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap strong {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap .imgArea {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap .imgArea .imgWrap {
+        height: 100%;
+    }
+
+    .btnMap:after {
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+    }
+
+    #blockArea {
+        background: rgba(0,0,0,0.8);
+    }
+    /* 테이블 전체 스타일링 */
+.table-table-wlwls {
+    margin: 10px; /* 테이블 주변 여백 조정 */
+    border-collapse: collapse; /* 테이블 셀 테두리를 합침 */
+    width: 300px; /* 테이블의 너비를 조정합니다. */
+}
+
+/* 테이블 데이터 행의 공통 스타일링 */
+.table-table-wlwls th,
+.table-table-wlwls td {
+    border: 1px solid #ddd; /* 테두리 스타일 지정 */
+    padding: 5px; /* 셀 내부 여백을 조정합니다. */
+    text-align: center; /* 셀 안의 텍스트를 가운데 정렬 */
+}
+}
 /* 산사태 */
 .top-top-tkstkxo{
 	height: 700px;
@@ -373,85 +601,322 @@ img {
       margin-top: 20px;
     }
     
- /*미세먼지  */
- #container.airPollution .mainInfo .mainInfoWrap .rightArea {
-    float: right;
-    width: 570px;
+ /* 미세먼지 */
+/* 미세먼지 */
+
+/* 테이블 스타일 */
+        .simple-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .simple-table th,
+        .simple-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* 보더 추가 */
+        }
+
+        .simple-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* 셀 주위에 박스 생성 */
+        .simple-table th,
+        .simple-table td {
+            box-sizing: border-box;
+        }
+
+        /* 좌우 정렬 */
+        .length9 {
+            float: left;
+        }
+
+        .length10 {
+            float: right;
+        }
+
+        /* 미세먼지 */
+        .leftArea2 {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .leftArea2 img {
+            width: 100%;
+            height: auto;
+        }
+
+        .rightArea2 {
+            float: right;
+            width: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .rightArea2 .titArea {
+            border-top: 3px solid #000;
+            border-bottom: 1px solid #000;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+
+        .rightArea2 .status #alarm ul {
+            padding: 10px;
+            height: 100px;
+            overflow-y: auto;
+            background-color: #f1f1f1;
+        }
+
+        .rightArea2 .status #alarm ul li {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .rightArea2 .status #alarm ul li.none span {
+            display: block;
+            color: #000;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-top: 30px;
+        }
+
+        .rightArea2 .status #alarm ul li.none span:before {
+            content: "✘";
+            display: inline-block;
+            margin-right: 5px;
+            color: red;
+        }
+
+        .rightArea2 .status #alarm ul li.none {
+            height: auto;
+            line-height: normal;
+            text-align: center;
+        }
+
+        .rightArea2 .forecast {
+            margin-top: 20px;
+        }
+
+        .rightArea2 .forecast .dayTab li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .rightArea2 .forecast .dayTab li.on a {
+            font-weight: bold;
+        }
+
+        .rightArea2 .forecast .dayText {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* 기본 테이블 스타일 */
+        .rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(odd) {
+            float: left;
+        }
+
+        .rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(even) {
+            float: right;
+        }
+
+        .rightArea2 .forecast .predictionWrap {
+            height: 415px;
+            padding: 24px 30px 0;
+            border: 1px solid #d2d2d2;
+            margin-top: -1px;
+            box-sizing: border-box;
+        }
+
+        .tableLayout li table th {
+            height: 35px;
+            text-align: center;
+            background: #cce7f4;
+            border-bottom: 1px solid #aec5d1;
+            box-sizing: border-box;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .rightArea2 .forecast .predictionWrap .tableLayout li table td {
+            height: 35px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 15px;
+            width: 105px;
+        }
+
+        /* h2 바로 위에 위치하도록 수정 */
+        .top-botom-altpajswl h2 {
+        	margin-bottom:20px;
+            clear: both;
+        }
+ .tableType1 thead th {
+    font-weight: 500;
+    background: #f6f6f6;
 }
-#container.airPollution .mainInfo .mainInfoWrap .rightArea .status {
-    margin-bottom: 47px;
+.tableType1 td, .tableTypeF th {
+    padding: 14px 5px;
+    text-align: center;
+    font-size: 16px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
-.leftArea{
-	float: left;
+.tableType1 tbody td {
+    color: #54585e;
 }
-.leftArea img{
+.tableType1 {
+    width: 1024px; 
+    margin: 0 auto;
+} 
+
+/* 붕괴*/
+.top-talbe{
+	margin-top: 20px;
+}
+ .table-talbe2 {
+            width: 100%; /* 테이블 가로 크기를 부모 요소에 맞추기 */
+            border-collapse: collapse; /* 테이블 셀 보더 겹치지 않게 함 */
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .table-talbe2 th,
+        .table-talbe2 td {
+            padding: 12px; /* 셀 안의 내용과 보더 사이의 여백 설정 */
+            border: 1px solid #dddddd; /* 셀 보더 설정 */
+            text-align: center; /* 가운데 정렬 */
+        }
+
+        .table-talbe2 thead th {
+            background-color: #f2f2f2; /* 헤더 배경색 설정 */
+            font-weight: bold; /* 헤더 글꼴 굵게 설정 */
+        }
+  .top-talbe h2{
+  	margin-top: 20px;
+  }    
+ .exDataViewBoxImg {
+    text-align: center;
+    margin-bottom: 18px;
+    
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.exDataViewBoxImg img{
 	width: 400px;
-	height: 600px;
-	margin: 10px 0 0 10px;
 }
-.rightArea .titArea {
-    position: relative;
-    margin-bottom: 13px;
-}
-#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap {
-    position: relative;
-    height: 166px;
-}
-#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm {
-    height: 162px;
-    position: absolute;
-    left: 0;
-    top: 0;
+.exDataViewBoxCon {
+    background-color: rgba( 255, 255, 255, 0.6 );
+    border: 1px solid #E0E0E0;
+    max-width: 1420px;
     width: 100%;
-    z-index: 2;
 }
-.status #alarm {
-    border-top: 3px solid #000;
-    border-bottom: 1px solid #000;
+.exDataViewBoxCon p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: -0.04em;
+    color: #4F4F4F;
+    opacity: 1;
 }
-#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm ul {
-    height: 162px;
+.exDataViewBox {
+    background: #F9F9F9;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    padding: 40px 20px 20px 20px;
 }
-.status #alarm ul {
-    padding: 30px 20px;
-    overflow: auto;
-    background: #f1f1f1;
-    box-sizing: border-box;
+.exDataViewBoxCon {
+    background-color: rgba( 255, 255, 255, 0.6 );
+    border: 1px solid #E0E0E0;
+    padding: 20px 40px;
+    width: 900px;
 }
-#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm {
-    height: 162px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 2;
+.exDataViewBoxImg > img {
+    object-fit: contain;
 }
-.status #alarm {
-    border-top: 3px solid #000;
-    border-bottom: 1px solid #000;
+.mid-img{
+	margin-top: 20px;
 }
-#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm ul li.none {
-    height: 100px !important;
-    line-height: 100px !important;
+.mid-img h2{
+	margin-bottom: 20px;
 }
-.status #alarm ul li.none {
-    line-height: 370px !important;
-    height: 370px !important;
-    letter-spacing: -0.5px !important;
+.botom-img{
+	margin-top: 20px;
 }
-.status #alarm ul li.none span {
-    display: inline-block;
-    line-height: 1em;
-    word-break: keep-all;
+.botom-img h2{
+	margin-bottom: 20px;
 }
-.status #alarm ul li.none span:before {
-    content: "";
-    display: inline-block;
-    margin-top: -2px;
-    margin-right: 4px;
-    vertical-align: middle;
-    width: 25px;
-    height: 25px;
-    background: url(/images/ico_common.png) no-repeat -50px -350px;
+@media screen and (max-width: 768px) {
+    /* 전체 너비가 768px 이하일 때 적용되는 스타일 */
+
+    .main-main {
+        width: 100%;
+        padding: 0 20px; /* 좌우 여백 추가 */
+    }
+
+    /* 메뉴 */
+    #state_sub .stateWrap > strong {
+        font-size: 32px; /* 폰트 크기 축소 */
+    }
+
+    .leftArea img,
+    .top-top-top-left img,
+    .top-top-tkstkxo-left img {
+        width: 100%; /* 이미지 너비를 100%로 설정하여 반응형 이미지 크기 조정 */
+        height: auto; /* 높이는 자동으로 조절 */
+    }
+
+    .rightArea,
+    .rightArea2 {
+        float: none; /* 우측 여백 제거 */
+        width: 100%; /* 전체 너비를 차지하도록 설정 */
+        margin-left: 0; /* 좌측 여백 제거 */
+    }
+
+    .rightArea .todayArea ul li,
+    .rightArea2 .titArea {
+        text-align: center; /* 텍스트 가운데 정렬 */
+    }
+
+    .tableArea,
+    .table-table-wlwls,
+    .tableTypeF,
+    .table-talbe2 {
+        width: 100%; /* 전체 너비를 차지하도록 설정 */
+    }
+
+    .swiper-container-horizontal {
+        overflow-x: auto; /* 가로 스크롤 적용 */
+    }
+
+    .exDataViewBoxCon {
+        width: 100%; /* 전체 너비를 차지하도록 설정 */
+        padding: 20px; /* 내부 여백 조정 */
+    }
+
+    .exDataViewBoxCon,
+    .exDataViewBox {
+        max-width: none; /* 최대 너비 제한 해제 */
+    }
+
+    .exDataViewBoxImg img {
+        max-width: 100%; /* 이미지 최대 너비 설정 */
+        height: auto; /* 높이는 자동으로 조절 */
+    }
+
+    .midtable h2,
+    .top-botom-altpajswl h2,
+    .top-talbe h2,
+    .mid-img h2,
+    .botom-img h2 {
+        text-align: center; /* 텍스트 가운데 정렬 */
+    }
 }
-  
