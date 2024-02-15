@@ -1,28 +1,139 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+>
 <head>
     <meta charset="UTF-8">
     <title>Data 3</title>
     <link rel="stylesheet" th:href="@{/css/style2.css}">
-    <script src="js/wlwls.js">
- </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <!--  <script src="js/wlwls.js"></script> -->
+    <script type="text/javascript" src="/js/efusioni.js"></script>
+ <script type="text/javascript" src="/js/imagesloaded.pkgd.js"></script>
+ <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+ <script type="text/javascript" src="/js/jwplayer.js"></script>
+ <script type="text/javascript" src="/js/proj4.js"></script>
+ <script type="text/javascript" src="/js/slick.js"></script>
+ <script type="text/javascript" src="/js/swiper.min.js"></script>
+ <script type="text/javascript" src="/js/ui.js"></script>
+<!-- <script>
+	    var shareTitle = '(2024.02.08. 03:15:44)';
+		
+		
+	    var shareContent = '북한 함경북도 길주 북쪽 57km 지역 규모 2.3 지진 발생';
+		
+
+        var swiper
+        $(function(){
+            tabSlide();
+            graph('graphLayoutB');
+            if($('.swiper-button-prev').hasClass('swiper-button-disabled') && $('.swiper-button-next').hasClass('swiper-button-disabled')){
+                $('.swiper-button-prev').add('.swiper-button-next').hide();
+                $('.tabSlideWrap').css('padding','0');
+            }
+            $('.utilMap ul li a').click(function(){
+                $(this).parent().parent().parent().find('li').removeClass('on');
+                $(this).parent().addClass('on');
+                if($(this).find('.ico10').length == 1){
+                    $('.infoMap').show();
+                    $('.depthArea').hide();
+                    $('.mapContent .explanationBox').hide();
+                    $('.mapController').hide();
+//                     $('.daySearch').hide();
+                }else{
+                    $('.infoMap').hide();
+                    $('.depthArea').show();
+                    $('.mapContent .explanationBox').hide();
+                    $('.mapController').show();
+                }
+                if($(this).find('.ico11').length == 1) {
+                    $('.mapContent .explanationBox').show();
+                }
+            });
+            $('.videoSlide').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                arrows: true,
+                autoplay: false,
+                autoplaySpeed: 3000,
+            });
+            $('.videoSlide').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                jwplayer('video' + currentSlide).stop();
+            });
+            setTimeout(function(){
+                $('.graphTypeB li span i').hover(function(){
+                    var hoverText;
+                    var hoverTop;
+                    var $graph_s = $(this).parent();
+
+                    if($(this).attr('data-s') > 0){
+                        hoverText = $(this).attr('data-s');
+                        hoverTop = (183 - $graph_s.height() + $graph_s.find('.mark_m').height() + $graph_s.find('.mark_l').height()) + $(this).height()/2;
+                    }else if($(this).attr('data-m') > 0){
+                        hoverText = $(this).attr('data-m');
+                        hoverTop = (183 - $graph_s.height() + $graph_s.find('.mark_l').height()) + $(this).height()/2;
+                    }else if($(this).attr('data-l') > 0){
+                        hoverText = $(this).attr('data-l');
+                        hoverTop = (183 - $graph_s.height()) + $(this).height()/2;
+                    }
+                    //$(this).append('<div style="position:absolute; left:0; top:50%; transform: translate(-100% -50%)">'+ hoverText +'</div>')
+                    $graph_s.parent().append('<div style="position:absolute; left:0; top:'+ hoverTop +'px ; transform: translate(-100%,-50%)">'+ hoverText +'</div>')
+                },function(){
+                    $(this).parent().parent().find('div').remove();
+                });
+            },1900);
+
+            $('.mapController a.btnCurrently').click(function() {
+                $(this).toggleClass('on');
+            });
+        });
+        function graph(graphType){
+            //강수량
+            var maxRain = 0;
+
+            $('.'+ graphType +' li').each(function(i){
+                //maxRain;
+                var sData = Number($(this).find('.mark_s').attr('data-s'));
+                var mData = Number($(this).find('.mark_m').attr('data-m'));
+                var lData = Number($(this).find('.mark_l').attr('data-l'));
+                var dataPlus = sData + mData + lData;
+                if(Number(dataPlus) > maxRain){
+                    maxRain = 0;
+                    maxRain = Number(dataPlus);
+                }
+            }).promise().done(function(){
+                $('.'+ graphType + ' li').each(function(){
+                    var sData = Number($(this).find('.mark_s').attr('data-s'));
+                    var mData = Number($(this).find('.mark_m').attr('data-m'));
+                    var lData = Number($(this).find('.mark_l').attr('data-l'));
+                    var dataPlus = sData + mData + lData;
+                    var rainAvg = dataPlus / maxRain * 100;
+                    $(this).find('span').css('height',rainAvg+'%').css('opacity','1').css('transition-duration',rainAvg/60 + 's');
+                    $(this).find('span i.mark_l').css('height',lData / dataPlus * 100 + '%').css('top','0').css('bottom','auto');
+                    $(this).find('span i.mark_m').css('height',mData / dataPlus * 100 + '%').css('top',lData / dataPlus * 100 + '%').css('bottom','auto');
+                    $(this).find('span i.mark_s').css('height',sData / dataPlus * 100 + '%').css('top',(lData + mData) / dataPlus * 100 + '%').css('bottom','auto');
+                    $(this).find('em').css('top',100-rainAvg+'%').css('opacity','1').css('transition-delay',rainAvg/60 + 's');
+                })
+            });
+        }
+        function subTab(target,obj){
+            $('#domesticMap').add('#foreignMap').add('#tsunamiMap').hide();
+            $('.specialMainTab ul li').removeClass('on');
+            $(obj).parent().addClass('on');
+            $(target).show();
+        }
+        function mapPopopen(seq){
+            uiUtil.layerOpen('/popup/earthquake?seq=' + seq);
+        }
+    </script> -->
+ 
 </head>
 <body>
 <div th:replace="~{header}"></div> 
 	<div class="main-main">
-	<div id="state_sub" class="bg_4">
-    <div class="stateWrap">
-                <strong>지진</strong>
-        <ul>
-                <li class="active"><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
-                <li class=""><a th:href="@{/data/data6}"><strong>산사태</strong></a></li>
-                <li class=""><a th:href="@{/data/data7}"><strong>대기오염</strong></a></li>
-                <li class=""><a href=""><strong>붕괴</strong></a></li>
-                <li class=""><a th:href="@{/data/data2}"><strong>산불</strong></a></li>
-        </ul>
-   	 </div>
-	</div>
+	
 	
 	<div class="top-top-top">
 	<div class="top-top-top-left">
@@ -54,7 +165,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 	            <tr th:each="item : ${dataList}">
 	           <!--      각 열에 해당하는 데이터 출력 -->
 	                <td th:text="${item.LOC_LOC}"></td>
-	                <td><a th:href="${item.INTENSITY_PAGEURI}">#</a></td>
+	                <td><a th:href="${item.INTENSITY_PAGEURI}"class="btnMap"></a></td>
 	                <td th:text="${item.DT_STFC}"></td>
 	                <td th:text="${item.INTENSITY_DESC}"></td>
 	                <td th:text="${item.SECT_SCLE}"></td>
@@ -66,8 +177,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 	    </div>
     </div>
     
+    <div class="midtable">
+    <h2>국내지진 규모별 순위</h2>
     <table class="tableTypeF">
-                    <caption>국내지진 규모별 순위</caption>
                     <colgroup>
                         <col width="100px">
                         <col width="210px">
@@ -96,7 +208,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>35.76</td>
                             <td>129.19</td>
                             <td>경북 경주시 남남서쪽 8.7km 지역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1278);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1278);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -105,7 +217,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>36.12</td>
                             <td>129.36</td>
                             <td>경북 포항시 북구 북쪽 9km 지역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1675);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1675);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>3</td>
@@ -114,7 +226,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>40.2</td>
                             <td>125</td>
                             <td>북한 평안북도 삭주 남남서쪽 20km 지역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(29);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(29);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -123,7 +235,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>36.8</td>
                             <td>130.2</td>
                             <td>경북 울진군 동남동쪽 74km 해역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(619);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(619);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -132,7 +244,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>36.6</td>
                             <td>127.9</td>
                             <td>경북 상주시 북서쪽 32km 지역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(2);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(2);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>6</td>
@@ -141,7 +253,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>35.77</td>
                             <td>129.19</td>
                             <td>경북 경주시 남남서쪽 8.2km 지역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1263);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1263);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>6</td>
@@ -150,7 +262,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>36.95</td>
                             <td>124.5</td>
                             <td>충남 태안군 서격렬비도 서북서쪽 100km 해역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1128);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1128);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>8</td>
@@ -159,7 +271,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>35.51</td>
                             <td>129.99</td>
                             <td>울산 동구 동쪽 52km 해역</td>
-                            <td><a href="javascript:;" class="btnMap"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1247);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>8</td>
@@ -168,7 +280,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>37.8</td>
                             <td>123.7</td>
                             <td>인천 백령도 서남서쪽 88km 해역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(576);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(576);"><span class="hide"></span></a></td>
                         </tr>
                         <tr>
                             <td>8</td>
@@ -177,44 +289,84 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                             <td>36.6</td>
                             <td>126.7</td>
                             <td>충남 홍성군 동쪽 3km 지역</td>
-                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(3);"><span class="hide">지도팝업 보기</span></a></td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(3);"><span class="hide"></span></a></td>
                         </tr>
                     </tbody>
                 </table>
-               <div id="blockArea">
-    	<div id="layerArea" class="earthquakePop"style="visibility: visible; margin-top: -345px; margin-left: -309px;">
-        <div class="earthquakePopWrap">
-            <strong>지도보기</strong>
-            <div class="imgArea">
-                <div class="imgWrap">
-                    <img src="https://uploadd.kbs.co.kr/earthquake/kma/1278.png">
                 </div>
+     <div id="blockArea" style="visibility: hidden;">
+    	<div id="layerArea" class="earthquakePop" style="visibility: visible; margin-top: -345px; margin-left: -309px;">
+    <div class="earthquakePopWrap">
+        <strong>지도보기</strong>
+        <div class="imgArea">
+            <div class="imgWrap">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/1675.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/1278.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/29.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/619.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/2.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/1263.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/1128.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/3.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/576.png">
+                <img src="https://uploadd.kbs.co.kr/earthquake/kma/1247.png">
+                
             </div>
         </div>
-        <a href="javascript:;" onclick="closePopup();"><span class="hide">close</span></a>
     </div>
+    <a href="javascript:uiUtil.layerClose();" class="pop_close"><span class="hide"></span></a>
 </div>
-    </div>
- <script type="text/javascript">
-    // 페이지가 로드될 때 팝업을 감추기 위한 함수
-    window.onload = function() {
-        var popup = document.querySelector('.earthquakePop');
-        popup.style.display = 'none';
-    };
+</div>
 
-    // 팝업을 띄우는 함수
-    function mapPopopen() {
-        var popup = document.querySelector('.earthquakePop');
-        popup.style.display = 'block';
-    }
 
-    // 팝업을 닫는 함수
-    function closePopup() {
-        var popup = document.querySelector('.earthquakePop');
-        popup.style.display = 'none';
+
+</div>
+
+<script type="text/javascript">
+//팝업을 띄우는 함수
+
+// 팝업을 띄우는 함수
+function mapPopopen(imageId) {
+    var popup = document.querySelector('.earthquakePop');
+    var imageWrap = document.querySelector('.imgWrap');
+    if (imageWrap) {
+        // 이미지 ID에 해당하는 이미지를 찾아서 표시
+        var targetImage = imageWrap.querySelector('img[src*="' + imageId + '"]');
+        if (targetImage) {
+            popup.style.display = 'block';
+            document.getElementById('blockArea').style.visibility = 'visible'; // blockArea 표시
+            // 모든 이미지를 숨김
+            var images = imageWrap.querySelectorAll('img');
+            images.forEach(function(image) {
+                image.style.display = 'none';
+            });
+            // 해당하는 이미지만 표시
+            targetImage.style.display = 'block';
+        } else {
+            console.error('해당하는 이미지를 찾을 수 없습니다.');
+        }
+    } else {
+        console.error('.imgWrap 요소를 찾을 수 없습니다.');
     }
+}
+
+// 팝업을 닫는 함수
+function closePopup() {
+    var popup = document.querySelector('.earthquakePop');
+    popup.style.display = 'none';
+    document.getElementById('blockArea').style.visibility = 'hidden'; // blockArea 숨김
+    // 이미지를 다시 보이도록 초기화
+    var imageWrap = document.querySelector('.imgWrap');
+    if (imageWrap) {
+        var images = imageWrap.querySelectorAll('img');
+        images.forEach(function(image) {
+            image.style.display = 'block';
+        });
+    } else {
+        console.error('.imgWrap 요소를 찾을 수 없습니다.');
+    }
+}
 </script>
-
 
 </body>
 </html>
