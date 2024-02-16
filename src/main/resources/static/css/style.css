@@ -611,9 +611,6 @@ ul li{list-style: none;}
 	color: rgba(0, 0, 0, 0.5);
 }
 
-#rcontent{
-	width:100%;
-}
 .reply_reply{
 	margin-top: 10px;
 	border-bottom: 1px solid #ddd;
@@ -628,14 +625,31 @@ ul li{list-style: none;}
 }
 .replyWrite form{
 	display:flex;
+	margin: 20px 0;
 }
 .reply-control{
+	width: 830px;
 	border: 1px solid #dee2e6;
-    border-radius: 0.375rem;
-    width: 100%;
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
     resize: none;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 5px;
+    height: 35px;
+    resize: none;
+}
+.reply_btn{
+   width: 90px;
+   height: 35px;
+   background-color: #ddd;
+   border: 1px solid #ccc;
+   border-top-right-radius: 0.375rem;
+   border-bottom-right-radius: 0.375rem;
+   font-weight: bold;
+}
+.reply_btn:hover{
+	background-image: linear-gradient(to bottom right, #002255, #004aad);
+	color: #fff;
 }
 
 /* 글쓰기 */
@@ -708,13 +722,9 @@ ul li{list-style: none;}
   width: 100.2%;
   border: 1px solid #dee2e6;
   border-radius: 0.375rem;
+  transition: none;
 }
-@media (prefers-reduced-motion: reduce) {
-  .form-select {
-    transition: none;
-  }
-}
-/* 채팅방 */
+
 
 @media (max-width: 1024px) {
   #content {
@@ -737,6 +747,9 @@ ul li{list-style: none;}
   }
   .td_title {
 	max-width: 50vw;
+  }
+  .reply-control{
+	width: 80vw;
   }
 }
 

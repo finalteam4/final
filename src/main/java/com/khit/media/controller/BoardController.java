@@ -117,14 +117,14 @@ public class BoardController {
 		//댓글 목록
 		List<ReplyDTO> replyList = replyService.findByBoardId(id);
 		
-		 List<String> thumbList = new ArrayList<>();
-	        for (ReplyDTO replyDTO : replyList) {
-	            String replyer = replyDTO.getReplyer();
-	            MemberDTO replyerDTO = memberService.findByName(replyer);
-	            if (replyerDTO != null) {
-	                thumbList.add(replyerDTO.getFilename());
-	            }
-	        }
+		List<String> thumbList = new ArrayList<>();
+        for (ReplyDTO replyDTO : replyList) {
+            String replyer = replyDTO.getReplyer();
+            MemberDTO replyerDTO = memberService.findByName(replyer);
+            if (replyerDTO != null) {
+                thumbList.add(replyerDTO.getFilename());
+            }
+        }
 	        
 	    model.addAttribute("thumbList", thumbList);
 		
