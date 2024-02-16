@@ -77,9 +77,36 @@
 		<article class="realTimeReport-wrap">
 			<div class="report-title">
 				<p>실시간 제보</p>
-				<a th:href="@{/board/notice}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
+				<a th:href="@{/board/}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
 			</div>
-			<p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p>
+			<!-- <p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p> -->
+			<div class="main-boardlist">
+				<table>
+					<tbody>
+						<tr th:each="board : ${boardList}">
+			                <th>
+			                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
+			                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
+			                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
+			                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
+			                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
+			                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
+			                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
+			                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+			                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
+			                </th>
+						    <td>
+							    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+							    	<span class="main-boardTitle" th:text="${board.boardTitle}"></span>
+							    </a>
+							</td>
+		
+			                <td th:text="${board.boardWriter}"></td>
+			                <td class="date-column" th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+			            </tr>
+					</tbody>
+				</table>
+			</div>
 		</article>
 	</section>	
 <!-------- Body3 : 긴급재난문자 , btn3(비상연락망, 재난유관기관, 기상특보) ------------>
@@ -140,6 +167,8 @@
 		</div>
 	</section>
 <div th:replace="~{footer}"></div>
+
+
 <script src="/js/today-airpollution.js"></script>
 <script src="/js/today-weather.js"></script>
 <script src="/js/text-slide.js"></script>
