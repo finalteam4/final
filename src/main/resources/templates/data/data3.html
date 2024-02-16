@@ -15,123 +15,13 @@
  <script type="text/javascript" src="/js/slick.js"></script>
  <script type="text/javascript" src="/js/swiper.min.js"></script>
  <script type="text/javascript" src="/js/ui.js"></script>
-<!-- <script>
-	    var shareTitle = '(2024.02.08. 03:15:44)';
-		
-		
-	    var shareContent = '북한 함경북도 길주 북쪽 57km 지역 규모 2.3 지진 발생';
-		
 
-        var swiper
-        $(function(){
-            tabSlide();
-            graph('graphLayoutB');
-            if($('.swiper-button-prev').hasClass('swiper-button-disabled') && $('.swiper-button-next').hasClass('swiper-button-disabled')){
-                $('.swiper-button-prev').add('.swiper-button-next').hide();
-                $('.tabSlideWrap').css('padding','0');
-            }
-            $('.utilMap ul li a').click(function(){
-                $(this).parent().parent().parent().find('li').removeClass('on');
-                $(this).parent().addClass('on');
-                if($(this).find('.ico10').length == 1){
-                    $('.infoMap').show();
-                    $('.depthArea').hide();
-                    $('.mapContent .explanationBox').hide();
-                    $('.mapController').hide();
-//                     $('.daySearch').hide();
-                }else{
-                    $('.infoMap').hide();
-                    $('.depthArea').show();
-                    $('.mapContent .explanationBox').hide();
-                    $('.mapController').show();
-                }
-                if($(this).find('.ico11').length == 1) {
-                    $('.mapContent .explanationBox').show();
-                }
-            });
-            $('.videoSlide').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                fade: true,
-                cssEase: 'linear',
-                arrows: true,
-                autoplay: false,
-                autoplaySpeed: 3000,
-            });
-            $('.videoSlide').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-                jwplayer('video' + currentSlide).stop();
-            });
-            setTimeout(function(){
-                $('.graphTypeB li span i').hover(function(){
-                    var hoverText;
-                    var hoverTop;
-                    var $graph_s = $(this).parent();
-
-                    if($(this).attr('data-s') > 0){
-                        hoverText = $(this).attr('data-s');
-                        hoverTop = (183 - $graph_s.height() + $graph_s.find('.mark_m').height() + $graph_s.find('.mark_l').height()) + $(this).height()/2;
-                    }else if($(this).attr('data-m') > 0){
-                        hoverText = $(this).attr('data-m');
-                        hoverTop = (183 - $graph_s.height() + $graph_s.find('.mark_l').height()) + $(this).height()/2;
-                    }else if($(this).attr('data-l') > 0){
-                        hoverText = $(this).attr('data-l');
-                        hoverTop = (183 - $graph_s.height()) + $(this).height()/2;
-                    }
-                    //$(this).append('<div style="position:absolute; left:0; top:50%; transform: translate(-100% -50%)">'+ hoverText +'</div>')
-                    $graph_s.parent().append('<div style="position:absolute; left:0; top:'+ hoverTop +'px ; transform: translate(-100%,-50%)">'+ hoverText +'</div>')
-                },function(){
-                    $(this).parent().parent().find('div').remove();
-                });
-            },1900);
-
-            $('.mapController a.btnCurrently').click(function() {
-                $(this).toggleClass('on');
-            });
-        });
-        function graph(graphType){
-            //강수량
-            var maxRain = 0;
-
-            $('.'+ graphType +' li').each(function(i){
-                //maxRain;
-                var sData = Number($(this).find('.mark_s').attr('data-s'));
-                var mData = Number($(this).find('.mark_m').attr('data-m'));
-                var lData = Number($(this).find('.mark_l').attr('data-l'));
-                var dataPlus = sData + mData + lData;
-                if(Number(dataPlus) > maxRain){
-                    maxRain = 0;
-                    maxRain = Number(dataPlus);
-                }
-            }).promise().done(function(){
-                $('.'+ graphType + ' li').each(function(){
-                    var sData = Number($(this).find('.mark_s').attr('data-s'));
-                    var mData = Number($(this).find('.mark_m').attr('data-m'));
-                    var lData = Number($(this).find('.mark_l').attr('data-l'));
-                    var dataPlus = sData + mData + lData;
-                    var rainAvg = dataPlus / maxRain * 100;
-                    $(this).find('span').css('height',rainAvg+'%').css('opacity','1').css('transition-duration',rainAvg/60 + 's');
-                    $(this).find('span i.mark_l').css('height',lData / dataPlus * 100 + '%').css('top','0').css('bottom','auto');
-                    $(this).find('span i.mark_m').css('height',mData / dataPlus * 100 + '%').css('top',lData / dataPlus * 100 + '%').css('bottom','auto');
-                    $(this).find('span i.mark_s').css('height',sData / dataPlus * 100 + '%').css('top',(lData + mData) / dataPlus * 100 + '%').css('bottom','auto');
-                    $(this).find('em').css('top',100-rainAvg+'%').css('opacity','1').css('transition-delay',rainAvg/60 + 's');
-                })
-            });
-        }
-        function subTab(target,obj){
-            $('#domesticMap').add('#foreignMap').add('#tsunamiMap').hide();
-            $('.specialMainTab ul li').removeClass('on');
-            $(obj).parent().addClass('on');
-            $(target).show();
-        }
-        function mapPopopen(seq){
-            uiUtil.layerOpen('/popup/earthquake?seq=' + seq);
-        }
-    </script> -->
- 
 </head>
 <body>
 <div th:replace="~{header}"></div> 
+<div id="pi-title">
+	<h3>지진</h3>	
+</div>
 	<div class="main-main">
 	
 	
@@ -321,7 +211,7 @@
 
 
 </div>
-
+<div th:replace="~{footer}"></div> 
 <script type="text/javascript">
 //팝업을 띄우는 함수
 

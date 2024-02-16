@@ -1,5 +1,7 @@
 package com.khit.media.entity;
 
+import com.khit.media.dto.BoardDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,6 +49,9 @@ public class Board extends BaseEntity{
 	@Column(columnDefinition = "Integer default 0")
 	private Integer likeCount;
 	
+	@Column(columnDefinition = "Integer default 0")
+	private Integer reportCount;
+	
 	//write.html에서 name 값과 다른 이름으로 만들 것
 	//MultipartFile과 String 타입이 서로 다르므로<
 	@Column
@@ -54,4 +59,54 @@ public class Board extends BaseEntity{
 	
 	@Column
 	private String filepath;
+	
+	public static Board toSaveBoardEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
+				.boardCategory(boardDTO.getBoardCategory())
+				.boardHits(boardDTO.getBoardHits())
+				.replyCount(boardDTO.getReplyCount())
+				.likeCount(boardDTO.getLikeCount())
+				.reportCount(boardDTO.getReportCount())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
+				.build();
+		return board;
+	}
+	
+	public static Board toUpdateBoardEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.id(boardDTO.getId())
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
+				.boardCategory(boardDTO.getBoardCategory())
+				.boardHits(boardDTO.getBoardHits())
+				.replyCount(boardDTO.getReplyCount())
+				.likeCount(boardDTO.getLikeCount())
+				.reportCount(boardDTO.getReportCount())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
+				.build();
+		return board;
+	}
+	
+	/*
+	public static Board toUpdateNoFileBoardEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.id(boardDTO.getId())
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
+				.boardCategory(boardDTO.getBoardCategory())
+				.boardHits(boardDTO.getBoardHits())
+				.replyCount(boardDTO.getReplyCount())
+				.likeCount(boardDTO.getLikeCount())
+				.reportCount(boardDTO.getReportCount())
+				.build();
+		return board;
+	}
+	*/
 }
