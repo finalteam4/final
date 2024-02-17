@@ -516,6 +516,7 @@ img {
     height: 25px;
     transform: translate(-50%, -50%);
     background: url(/images/ico_common.png) no-repeat -75px -375px;
+   
 }
 element.style {
     visibility: visible;
@@ -536,6 +537,7 @@ script {
     display: none;
 }
 @media (max-width: 768px) {
+	
     .top-top-top-left img {
         width: 300px;
         height: 450px;
@@ -563,13 +565,7 @@ script {
         margin: 0 auto;
     }
 
-    #layerArea.earthquakePop {
-        width: auto;
-        height: auto;
-        max-width: 90%;
-        max-height: 90%;
-    }
-
+ 
     #layerArea {
         width: 90%;
         height: 90%;
@@ -603,10 +599,54 @@ script {
         height: 100%;
     }
 
+   
+    #blockArea {
+        background: rgba(0,0,0,0.8);
+    }
+     #layerArea.earthquakePop {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        max-width: 90%;
+        max-height: 90%;
+        background: #fff;
+        z-index: 10;
+       
+    }
+ .imgWrap img{
+ 	
+ 	height: auto;
+ }
+    #layerArea.earthquakePop .pop_close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap {
+        padding: 20px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap strong {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap .imgArea {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap .imgArea .imgWrap {
+        height: 100%;
+    }
+
     .btnMap:after {
         width: 20px;
         height: 20px;
-        background-size: contain;
+        
     }
 
     #blockArea {
