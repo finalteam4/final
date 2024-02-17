@@ -30,10 +30,17 @@ ul li{list-style: none;}
 
 /* 비상연락망 */
 
+/* PC 화면(1440px) */
+
 #emerContact_container .emer_office{
 	padding:8px;
 }
 #emerContact_container{
+	max-width:1024px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;	/* 오버플로우 방지 */
+	margin:40px auto;
 	background-color: #e9e9e9;
 }
 #emerContact_container h2{
@@ -44,11 +51,11 @@ ul li{list-style: none;}
 }
 #emerContact_container #emerContact_contactTBL {
 	border-collapse: collapse; 
-	margin: 40px auto; 
+	margin: 0 auto 40px auto; 
 	text-align: center;
 }
 #emerContact_container #emerContact_contactTBL td{
-	width: 160px; 
+	width: 150px; 
 	height: 30px; 
 	border: 1px solid #ddd;
 	padding: 8px; 
@@ -59,18 +66,364 @@ ul li{list-style: none;}
 #emerContact_container #emerContact_contactTBL td:hover{ 
 	border: 1px solid #353535;
 }
-#emerContact_container #emerContact_contactTBL h4{
+#emerContact_container #emerContact_contactTBL h2{
 	line-height: 30px;
 }
 #emerContact_container .contact_region {
 	cursor: pointer;
 }
-#emerContact_container #map {
-	width: 600px; 
+#emerContact_container #mapArea{
+	margin: 40px auto;
+	width: 800px;
 	height: 800px;
-	margin: 40px auto; 
 	background-color: rgba(255,255,255,1);
 }
+#emerContact_container .map_wrap, .map_wrap * {
+	font-size:12px;
+}
+#emerContact_container .map_wrap a, .map_wrap a:hover, .map_wrap a:active{
+	color:#000;
+	text-decoration: none;
+}
+#emerContact_container .map_wrap {
+	position:relative;
+	width:100%;
+	height:800px;
+}
+#emerContact_container #menu_wrap {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	width:200px; 
+	margin:500px 0 40px 10px;
+	margin-left: 11%; 
+	padding:5px;
+	overflow-y:auto;
+	background:rgba(255, 255, 255, 0.7);
+	z-index: 100;
+	font-size:12px;
+	border-radius: 10px;
+}
+#emerContact_container .bg_white {
+	background:#fff;
+}
+#emerContact_container #menu_wrap hr {
+	display: block; 
+	height: 1px;
+	border: 0; 
+	border-top: 2px solid #5F5F5F;
+	margin:3px 0;
+}
+#emerContact_container #menu_wrap .option{
+	text-align: center;
+}
+#emerContact_container #menu_wrap .option p {
+	margin:10px 0;
+}  
+#emerContact_container #menu_wrap .option button {
+	margin-left:5px;
+}
+#emerContact_container #placesList li {
+	list-style: none;
+}
+#emerContact_container #placesList .item {
+	position:relative;
+	border-bottom:1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+#emerContact_container #placesList .item span {
+	display: block;
+	margin-top:4px;
+}
+#emerContact_container #placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+#emerContact_container #placesList .item .info{
+	padding:10px 0 10px 55px;
+}
+#emerContact_container #placesList .info .gray {
+	color:#8a8a8a;
+	}
+#emerContact_container #placesList .info .jibun {
+	padding-left:26px;
+	background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+}
+#emerContact_container #placesList .info .tel {
+	color:#009900;
+}
+#emerContact_container #placesList .item .markerbg {
+	float:left;
+	position:absolute;
+	width:36px; 
+	height:37px;
+	margin:10px 0 0 10px;
+	background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+}
+#emerContact_container #placesList .item .marker_1 {
+	background-position: 0 -10px;
+}
+#emerContact_container #placesList .item .marker_2 {
+	background-position: 0 -56px;
+}
+#emerContact_container #placesList .item .marker_3 {
+	background-position: 0 -102px
+}
+#emerContact_container #placesList .item .marker_4 {
+	background-position: 0 -148px;
+}
+#emerContact_container #placesList .item .marker_5 {
+	background-position: 0 -194px;
+}
+#emerContact_container #placesList .item .marker_6 {
+	background-position: 0 -240px;
+}
+#emerContact_container #placesList .item .marker_7 {
+	background-position: 0 -286px;
+}
+#emerContact_container #placesList .item .marker_8 {
+	background-position: 0 -332px;
+}
+#emerContact_container #placesList .item .marker_9 {
+	background-position: 0 -378px;
+}
+#emerContact_container #placesList .item .marker_10 {
+	background-position: 0 -423px;
+}
+#emerContact_container #placesList .item .marker_11 {
+	background-position: 0 -470px;
+}
+#emerContact_container #placesList .item .marker_12 {
+	background-position: 0 -516px;
+}
+#emerContact_container #placesList .item .marker_13 {
+	background-position: 0 -562px;
+}
+#emerContact_container #placesList .item .marker_14 {
+	background-position: 0 -608px;
+}
+#emerContact_container #placesList .item .marker_15 {
+	background-position: 0 -654px;
+}
+#emerContact_container #pagination {
+	margin:10px auto;
+	text-align: center;
+}
+#emerContact_container #pagination a {
+	display:inline-block;
+	margin-right:10px;
+}
+#emerContact_container #pagination .on {
+	font-weight: bold; 
+	cursor: default;
+	color:#777;
+}
+
+@media all and (max-width:1024px){
+	
+	#emerContact_container .emer_office{
+		padding:8px;
+	}
+	#emerContact_container{
+		max-width:1024px;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: hidden;	/* 오버플로우 방지 */
+		margin:40px auto;
+		background-color: #e9e9e9;
+	}
+	#emerContact_container h2{
+		font-size:16px;
+	}
+	#emerContact_container h4{
+		font-size:10px;
+	}
+	#emerContact_container #emerContact_contactTBL img {
+        display: block; /* 이미지 표시 */
+    }
+    #emerContact_container #emerContact_contactTBL h2 {
+        display: none; /* 텍스트 숨김 */
+    }
+	#emerContact_container #emerContact_contactTBL {
+		border-collapse: collapse; 
+		margin: 0 auto 40px auto; 
+		text-align: center;
+	}
+	#emerContact_container #emerContact_contactTBL td{
+		width: 150px;
+		height: 30px; 
+		border: 1px solid #ddd;
+		padding: 8px; 
+		text-align: center; 
+		color: #363636; 
+		background-color:#f9f9f9;
+	}
+	#emerContact_container #emerContact_contactTBL td:hover{ 
+		border: 1px solid #353535;
+	}
+	#emerContact_container #emerContact_contactTBL h2{
+		line-height: 30px;
+	}
+	#emerContact_container .contact_region {
+		cursor: pointer;
+	}
+	#emerContact_container #mapArea{
+		margin: 40px auto;
+		width: 800px;
+		height: 800px;
+		background-color: rgba(255,255,255,1);
+	}
+	#emerContact_container .map_wrap, .map_wrap * {
+		font-size:12px;
+	}
+	#emerContact_container .map_wrap a, .map_wrap a:hover, .map_wrap a:active{
+		color:#000;
+		text-decoration: none;
+	}
+	#emerContact_container .map_wrap {
+		position:relative;
+		width:100%;
+		height:800px;
+	}
+	#emerContact_container #menu_wrap {
+		position:absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		width:200px; 
+		margin:500px 0 40px 10px;
+		margin-left: 11%; 
+		padding:5px;
+		overflow-y:auto;
+		background:rgba(255, 255, 255, 0.7);
+		z-index: 100;
+		font-size:12px;
+		border-radius: 10px;
+	}
+	#emerContact_container .bg_white {
+		background:#fff;
+	}
+	#emerContact_container #menu_wrap hr {
+		display: block; 
+		height: 1px;
+		border: 0; 
+		border-top: 2px solid #5F5F5F;
+		margin:3px 0;
+	}
+	#emerContact_container #menu_wrap .option{
+		text-align: center;
+	}
+	#emerContact_container #menu_wrap .option p {
+		margin:10px 0;
+	}  
+	#emerContact_container #menu_wrap .option button {
+		margin-left:5px;
+	}
+	#emerContact_container #placesList li {
+		list-style: none;
+	}
+	#emerContact_container #placesList .item {
+		position:relative;
+		border-bottom:1px solid #888;
+		overflow: hidden;
+		cursor: pointer;
+		min-height: 65px;
+	}
+	#emerContact_container #placesList .item span {
+		display: block;
+		margin-top:4px;
+	}
+	#emerContact_container #placesList .item h5, #placesList .item .info {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	#emerContact_container #placesList .item .info{
+		padding:10px 0 10px 55px;
+	}
+	#emerContact_container #placesList .info .gray {
+		color:#8a8a8a;
+		}
+	#emerContact_container #placesList .info .jibun {
+		padding-left:26px;
+		background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+	}
+	#emerContact_container #placesList .info .tel {
+		color:#009900;
+	}
+	#emerContact_container #placesList .item .markerbg {
+		float:left;
+		position:absolute;
+		width:36px; 
+		height:37px;
+		margin:10px 0 0 10px;
+		background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+	}
+	#emerContact_container #placesList .item .marker_1 {
+		background-position: 0 -10px;
+	}
+	#emerContact_container #placesList .item .marker_2 {
+		background-position: 0 -56px;
+	}
+	#emerContact_container #placesList .item .marker_3 {
+		background-position: 0 -102px
+	}
+	#emerContact_container #placesList .item .marker_4 {
+		background-position: 0 -148px;
+	}
+	#emerContact_container #placesList .item .marker_5 {
+		background-position: 0 -194px;
+	}
+	#emerContact_container #placesList .item .marker_6 {
+		background-position: 0 -240px;
+	}
+	#emerContact_container #placesList .item .marker_7 {
+		background-position: 0 -286px;
+	}
+	#emerContact_container #placesList .item .marker_8 {
+		background-position: 0 -332px;
+	}
+	#emerContact_container #placesList .item .marker_9 {
+		background-position: 0 -378px;
+	}
+	#emerContact_container #placesList .item .marker_10 {
+		background-position: 0 -423px;
+	}
+	#emerContact_container #placesList .item .marker_11 {
+		background-position: 0 -470px;
+	}
+	#emerContact_container #placesList .item .marker_12 {
+		background-position: 0 -516px;
+	}
+	#emerContact_container #placesList .item .marker_13 {
+		background-position: 0 -562px;
+	}
+	#emerContact_container #placesList .item .marker_14 {
+		background-position: 0 -608px;
+	}
+	#emerContact_container #placesList .item .marker_15 {
+		background-position: 0 -654px;
+	}
+	#emerContact_container #pagination {
+		margin:10px auto;
+		text-align: center;
+	}
+	#emerContact_container #pagination a {
+		display:inline-block;
+		margin-right:10px;
+	}
+	#emerContact_container #pagination .on {
+		font-weight: bold; 
+		cursor: default;
+		color:#777;
+	}
+	
+}
+
 
 /* 재해 재난 요령 전체 페이지 */
 
@@ -88,6 +441,8 @@ ul li{list-style: none;}
 */
 
 /* 위기상황, 긴급상황 시 전화 및 유관기관 연락처 팝업부분 */
+
+/* PC 화면(1440px) */
 
 #safeBehavior_bigContainer #safeBehavior_contactPopup{
 	width:600px; 

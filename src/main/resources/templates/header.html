@@ -98,7 +98,7 @@
 			            					<li><a th:href="@{/infoboard/}">제보게시판</a></li>
 			            					<li><a th:href="@{/qnaboard/}">질문게시판</a></li>
 			            					<li sec:authorize="hasAnyAuthority('ADMIN')" >
-			            						<a th:href="@{/report/}">신고게시판</a>
+			            						<a th:href="@{/report/}" style="color:red;">신고게시판</a>
 			            					</li>
 			            				</ul>
 			            			</li>

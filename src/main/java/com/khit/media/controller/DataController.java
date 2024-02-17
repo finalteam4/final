@@ -37,7 +37,7 @@ public class DataController {
             con.setRequestMethod("GET");
 
             // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -113,7 +113,7 @@ public class DataController {
             con.setRequestMethod("GET");
 
             // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -175,7 +175,7 @@ public class DataController {
     		con.setRequestMethod("GET");
     		
     		// 응답 읽기
-    		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+    		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
     		StringBuilder response = new StringBuilder();
     		String line;
     		while ((line = reader.readLine()) != null) {
@@ -237,7 +237,7 @@ public class DataController {
             con.setRequestMethod("GET");
             
             // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -315,7 +315,7 @@ public class DataController {
          con.setRequestMethod("GET");
 
          // 응답 읽기
-         BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+         BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
          StringBuilder response = new StringBuilder();
          String line;
          while ((line = reader.readLine()) != null) {
