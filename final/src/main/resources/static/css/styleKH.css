@@ -35,6 +35,10 @@ ul li{list-style: none;}
 #emerContact_container .emer_office{
 	padding:8px;
 }
+#emerContact_container .emer_office a:hover{
+	color:#05347E;
+	font-weight:700;
+}
 #emerContact_container{
 	max-width:1024px;
 	margin-left: auto;
@@ -44,7 +48,7 @@ ul li{list-style: none;}
 	background-color: #e9e9e9;
 }
 #emerContact_container h2{
-	font-size:16px;
+	font-size:13px;
 }
 #emerContact_container h4{
 	font-size:10px;
@@ -54,26 +58,34 @@ ul li{list-style: none;}
 	margin: 0 auto 40px auto; 
 	text-align: center;
 }
-#emerContact_container #emerContact_contactTBL td{
-	width: 150px; 
-	height: 30px; 
+#emerContact_container #emerContact_contactTBL tr{
+	padding:10px;
+}
+
+#emerContact_container #emerContact_contactTBL .contact_region{
+	width: 133.33px; 
+	height: 60px; 
 	border: 1px solid #ddd;
-	padding: 8px; 
 	text-align: center; 
 	color: #363636; 
 	background-color:#f9f9f9;
 }
-#emerContact_container #emerContact_contactTBL td:hover{ 
+#emerContact_container #emerContact_contactTBL .contact_region:hover{ 
 	border: 1px solid #353535;
+}
+#emerContact_container #emerContact_contactTBL img{
+	margin: 2px;
 }
 #emerContact_container #emerContact_contactTBL h2{
 	line-height: 30px;
+	margin: 2px;
 }
 #emerContact_container .contact_region {
 	cursor: pointer;
 }
 #emerContact_container #mapArea{
-	margin: 40px auto;
+	margin-left: auto;
+	margin-right: auto;
 	width: 800px;
 	height: 800px;
 	background-color: rgba(255,255,255,1);
@@ -90,6 +102,82 @@ ul li{list-style: none;}
 	width:100%;
 	height:800px;
 }
+
+/* 맵 뷰, 확대 축소 제어 부분 */
+#emerContact_container .radius_border{
+	border:1px solid #919191;
+	border-radius:5px;
+}     
+#emerContact_container .custom_typecontrol {
+	position:absolute;
+	top:10px;
+	right:10px;
+	overflow:hidden;
+	width:130px;
+	height:30px;
+	margin:0 11% 0 0;
+	padding:0;
+	z-index:1;
+	font-size:12px;
+}
+#emerContact_container .custom_typecontrol span {
+	display:block;
+	width:65px;
+	height:30px;
+	float:left;
+	text-align:center;
+	line-height:30px;
+	cursor:pointer;
+}
+#emerContact_container .custom_typecontrol .btn {
+	background:#fff;
+	background:linear-gradient(#fff,  #e6e6e6);
+}       
+#emerContact_container .custom_typecontrol .btn:hover {
+	background:#f5f5f5;
+	background:linear-gradient(#f5f5f5,#e3e3e3);
+}
+#emerContact_container .custom_typecontrol .btn:active {
+	background:#e6e6e6;
+	background:linear-gradient(#e6e6e6, #fff);
+}    
+#emerContact_container .custom_typecontrol .selected_btn {
+	color:#fff;
+	background:#05347E;
+	background:linear-gradient(#05347E, #5b6d8a);
+}
+#emerContact_container .custom_typecontrol .selected_btn:hover {
+	color:#fff;
+}   
+#emerContact_container .custom_zoomcontrol {
+	position:absolute;
+	top:50px;
+	right:10px;
+	width:36px;
+	height:80px;
+	margin:0 11% 0 0;
+	overflow:hidden;
+	z-index:1;
+	background-color:#f5f5f5;
+} 
+#emerContact_container .custom_zoomcontrol span {
+	display:block;
+	width:36px;
+	height:40px;
+	text-align:center;
+	cursor:pointer;
+}     
+#emerContact_container .custom_zoomcontrol span img {
+	width:15px;
+	height:15px;
+	padding:12px 0;
+	border:none;
+}             
+#emerContact_container .custom_zoomcontrol span:first-child{
+	border-bottom:1px solid #bfbfbf;
+}     
+
+/* 검색 부분 */
 #emerContact_container #menu_wrap {
 	position:absolute;
 	top:0;
@@ -223,7 +311,7 @@ ul li{list-style: none;}
 	color:#777;
 }
 
-@media all and (max-width:1024px){
+@media (max-width:768px){
 	
 	#emerContact_container .emer_office{
 		padding:8px;
@@ -242,11 +330,8 @@ ul li{list-style: none;}
 	#emerContact_container h4{
 		font-size:10px;
 	}
-	#emerContact_container #emerContact_contactTBL img {
-        display: block; /* 이미지 표시 */
-    }
-    #emerContact_container #emerContact_contactTBL h2 {
-        display: none; /* 텍스트 숨김 */
+    #emerContact_container #emerContact_contactTBL td h2 {
+        display: none; /* 가로 크기가 768px 미만이면 숨기기 */
     }
 	#emerContact_container #emerContact_contactTBL {
 		border-collapse: collapse; 
@@ -484,7 +569,6 @@ ul li{list-style: none;}
 }
 #safeBehavior_bigContainer #safeBehaviorPopup_tbl th, td{
 	width:300px; 
-	padding: 8px; 
 	border: 1px solid #353535;
 }
 #safeBehavior_bigContainer #safeBehaviorPopup_tbl #safeBehaviorPopup_tr1{

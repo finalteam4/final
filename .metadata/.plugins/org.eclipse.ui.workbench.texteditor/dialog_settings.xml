@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="emerContact_contactTBL"/>
+		<item key="selection" value="safeBehaviorPopup_tbl"/>
 		<list key="findhistory">
+			<item value="safeBehaviorPopup_tbl"/>
+			<item value="custom_typecontrol"/>
 			<item value="emerContact_contactTBL"/>
 			<item value="menu_wrap"/>
 			<item value="mapArea"/>
