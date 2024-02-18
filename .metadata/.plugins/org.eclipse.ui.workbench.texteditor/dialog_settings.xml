@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="safeBehaviorPopup_tbl"/>
+		<item key="selection" value="safeBehavior_categoryTitle"/>
 		<list key="findhistory">
+			<item value="safeBehavior_categoryTitle"/>
 			<item value="safeBehaviorPopup_tbl"/>
 			<item value="custom_typecontrol"/>
 			<item value="emerContact_contactTBL"/>
