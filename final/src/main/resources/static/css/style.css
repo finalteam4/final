@@ -308,9 +308,26 @@ ul li{list-style: none;}
     color: white;
     font-weight: bold;
   }
-
-  
-    
+  #list{
+    margin: 40px auto;
+    max-width: 1000px;
+  }
+  #list #top{
+    margin: 10px;
+  }
+  #list h4{
+    font-size: 1.5vw;
+    margin: 30px auto;
+    text-align: center;
+  }
+  #list #tt{
+    background-color: #f5f5f5;
+    border-radius: 30px;
+  }
+  #list .tbl_list tbody tr:last-child {
+    border-bottom: none;
+}
+        
     
 
 }
