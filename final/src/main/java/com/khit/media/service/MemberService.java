@@ -159,11 +159,4 @@ public class MemberService {
 			return "NO";
 		}
 	}
-
-	public MemberDTO findByName(String boardWriter) {
-		Member member = memberRepository.findByName(boardWriter);
-		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
-		return memberDTO;
-	}
-
 }

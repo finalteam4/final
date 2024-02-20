@@ -102,12 +102,10 @@ public class MemberController {
 	//회원 삭제
 	@GetMapping("/member/delete/{id}")
 	public String deleteMember(@PathVariable Integer id) {
-		MemberDTO memberDTO = memberService.findById(id);
-		String name = memberDTO.getName();
-		reportService.deleteByReporter(name);
-		voteService.deleteByVoter(name);
-		replyService.deleteByReplyer(name);
-		boardService.deleteByBoardWriter(name);
+		reportService.deleteByRid(id);
+		voteService.deleteByVid(id);
+		replyService.deleteByRid(id);
+		boardService.deleteByBid(id);
 		memberService.deleteById(id);
 		return "redirect:/member/list";
 	}
@@ -137,7 +135,7 @@ public class MemberController {
 	        Model model) {
 		MemberDTO memberDTO = memberService.findById(principal.getMember().getId());
 		String name = memberDTO.getName();
-	    Page<BoardDTO> voteList = boardService.findVoteListAll2(name, pageable);
+		Page<BoardDTO> voteList = boardService.findVoteListAll2(name, pageable);
 	    Page<BoardDTO> myBoardList = boardService.findByWriter2(name, pageable);
 	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(name, pageable);
 	    
@@ -165,12 +163,12 @@ public class MemberController {
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         logoutSuccessHandler.onLogoutSuccess(request, response, SecurityContextHolder.getContext().getAuthentication());
 
-		String name = principal.getMember().getName();
-		reportService.deleteByReporter(name);
-		voteService.deleteByVoter(name);
-		replyService.deleteByReplyer(name);
-		boardService.deleteByBoardWriter(name);
-		memberService.deleteById(principal.getMember().getId());
+		Integer id = principal.getMember().getId();
+		reportService.deleteByRid(id);
+		voteService.deleteByVid(id);
+		replyService.deleteByRid(id);
+		boardService.deleteByBid(id);
+		memberService.deleteById(id);
 		return "redirect:/";
 	}
 	

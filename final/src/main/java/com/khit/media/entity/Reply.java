@@ -31,6 +31,9 @@ public class Reply extends BaseEntity{
 	@Column
 	private Long boardId;
 	
+	@Column
+	private Integer rid;
+	
 	@Column(length=30, nullable=false)
 	private String replyer;
 	
@@ -40,11 +43,21 @@ public class Reply extends BaseEntity{
 	public static Reply toSaveReplyEntity(ReplyDTO replyDTO) {
 		Reply reply = Reply.builder()
 				.boardId(replyDTO.getBoardId())
+				.rid(replyDTO.getRid())
 				.replyer(replyDTO.getReplyer())
 				.rcontent(replyDTO.getRcontent())
 				.build();
 		return reply;
 	}
 	
-	
+	public static Reply toUpdateReplyEntity(ReplyDTO replyDTO) {
+		Reply reply = Reply.builder()
+				.id(replyDTO.getId())
+				.boardId(replyDTO.getBoardId())
+				.rid(replyDTO.getRid())
+				.replyer(replyDTO.getReplyer())
+				.rcontent(replyDTO.getRcontent())
+				.build();
+		return reply;
+	}
 }
