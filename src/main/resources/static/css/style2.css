@@ -922,8 +922,17 @@ legend, caption {
     }
 	.top-top-tkstkxo{
 	margin-top: 20px;
-	height: 700px;
+	height: 100%;
 	}
+	.top-top-tkstkxo-right{
+	display:inline-block;
+	margin-left: 40px;
+	margin-top: 20px;
+    width: 570px;
+   height: auto;
+   
+	
+}
     .top-top-tkstkxo-left img {
         width: 100%;
         height: auto;
