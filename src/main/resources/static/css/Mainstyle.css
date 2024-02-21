@@ -1,0 +1,927 @@
+@charset "UTF-8";
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+/* 공통스타일 */
+* {margin: 0; padding: 0;  font-family: 'NanumSquareRound';}
+
+html, body{color: #353535; background: #e9e9e9;}
+ul li{list-style: none;}
+a {text-decoration: none; color: #353535; font-weight:900;}
+a:hover{text-decoration: none; color: #004aad; font-weight:900;}
+
+/*    
+	min-width : 1024px; >>  최소 1024px까지, 1024px 이상부터 코드 적용 (스마트폰 등 가장 작은 사이즈에서 레이아웃 기본 -> 점차 확장되는 형태)
+	max-width : 1024px; >> 최대 1024px, 1024px 이하부터 코드 적용 (데스크 탑용의 가장 큰 화면 사이즈에서 레이아웃 기본 -> 점차 축소하는 형태)
+*/
+
+/* =============================================
+                     header 
+================================================ */
+#planB-header{width:100%; max-width:1024px; margin:0 auto; background: #e9e9e9; 
+/* 	콘텐츠 1024px 틀 - 마지막에 지울예정 */
+/* 	border:1px solid black; */
+}
+/* header - 로그인, 회원가입, 마이페이지 */
+.planB-sidemenu{
+	width:100%; 
+	display:flex; 
+	justify-content: flex-end;
+}
+.planB-sidemenu a{padding: 15px 20px; font-size:18px;}
+
+/* header - 로고 */
+.planB-menuWrap{
+	width:100%; 
+	display:flex; 
+	margin-bottom:10px;
+	
+	}
+.main-img-logo{
+	width:290px; 
+	display:flex; 
+	align-items: center;
+	}
+.main-img-logo h2{padding:10px 0 0 10px; font-weight:900;}
+.main-img-logo h2:hover{color: #353535;}
+
+/* header - 메인 메뉴 + 챗봇 */
+nav {
+	z-index:80;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+/* common */
+nav ul {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+nav ul::after {
+	display: block;
+	clear: both;
+	content: '';
+}
+nav ul li {
+	position: relative;
+	float: left;
+	border: none;
+}
+nav ul li:not(:first-child) {border-left: none;}
+nav ul li:hover {background-color: rgba(255,255,255,.8);}
+nav ul li a {
+	display: inline-block;
+	padding: 1em 2.5em;
+	color: #353535;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	font-size:19px;
+}
+nav ul ul {
+	position: absolute;
+	top: 100%;
+	left: 0px;
+}
+nav ul ul li {
+	float: none;
+	margin: 0;
+	border: none;
+}
+nav ul ul li:not(:first-child) {
+	border: none;
+	border-top: none;
+}
+nav ul ul ul {
+	position: absolute;
+	top: 0px;
+	left: 100%;
+/* 	 border-top-right-radius:30px;  */
+}
+
+.nav03 ul ul {
+	visibility: hidden;
+    opacity: 0;
+  	background-color: #fff;/* 흰색 배경으로 설정 */
+    transition: .2s ease-in-out, background-color 0s;
+    transform: translateY(-20px);
+    border-bottom: 3px solid #004aad; 
+}
+
+.nav03 ul li:hover > ul {
+	visibility: visible;
+    opacity: 1;
+    background-color: #fff; /* 흰색 배경 유지 */
+    transform: translateY(0);
+}
+/* 서브메뉴 호버 시에도 흰색 배경 유지 */
+.nav03 ul ul li:hover > ul {
+    background-color: #fff; /* 흰색 배경 유지 */
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between; /* 메뉴 항목들과 FAQ 안내봇 사이의 공간을 균등하게 분배 */
+    align-items: center; /* 세로 축 중앙 정렬 */
+    width: 100%; /* 컨테이너 너비를 최대로 설정 */
+}
+.menu-bot-img{
+	padding-left: 43px;
+	cursor:pointer;
+	}
+.menu-bot-img:hover{
+	color: #004aad;
+}	
+.menu-bot-img span{
+	font-size:15px;
+	font-weight:900;
+	}
+
+
+#faqContainer {
+    position: fixed; /* 오버레이를 화면에 고정 */
+    top: 110px;
+    right: calc((100% - 1024px) / 2);
+    width: 80%; /* 너비 */
+    max-width: 244px; /* 최대 너비 */
+    padding: 20px 20px 15px 20px;
+    background-color: white; /* 배경색 */
+    border-radius:30px;
+    border: 1px solid #b0b0b0; /* 테두리 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* 그림자 */
+    z-index: 1000; /* z-index를 높여 다른 요소 위에 표시 */
+    display: none; /* 기본적으로 숨김 */
+}
+
+@media screen and (max-width: 1024px) {
+    #faqContainer {
+        right: 0; /* 뷰포트가 1024px 이하일 때 오른쪽 끝에 붙임 */
+    }
+}
+
+#faqOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999; /* faqContainer 바로 아래 */
+    display: none;
+}
+.faqbot-image{
+	width:30px;
+	height:30px;
+	float:left;
+	margin-right: 10px;
+    margin-left: 40px;
+}
+.faqbot-title{
+	font-weight:900;
+	font-size:14px;
+	padding-top: 9px;
+    margin-bottom: 20px;
+}
+.centered-question {
+    display: block; /* 블록 레벨 요소로 만들어 줄바꿈 효과를 줍니다 */
+    width: auto; /* 버튼의 너비를 내용에 맞게 조정합니다 */
+    margin: 10px auto; /* 상하 마진은 10px, 좌우 마진은 자동으로 설정하여 가운데 정렬합니다 */
+    padding: 10px; /* 버튼 내부의 여백을 추가합니다 */
+    border-radius:20px;
+    background: #ffffff;
+    box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid #b0b0b0; 
+    
+}
+.answer-question{
+	display: block;
+	margin: 10px auto;
+	
+}
+@media screen and (max-width: 768px) {
+	.planB-menuWrap {
+	display:flex;
+	flex-direction: column;
+    align-items: center;
+    margin:0 auto;
+	}
+	.main-img-logo{
+	margin: 0 auto;
+	width: 250px;
+	padding-left:20px;
+	}
+    .menu-container {
+        justify-content: center; /* 중앙 정렬을 유지하되, 필요에 따라 조정 가능 */
+        flex-wrap: wrap; /* 요소들이 충분한 공간이 없을 경우 다음 줄로 넘어갈 수 있도록 설정 */
+    }
+    .menu-container ul,
+    .menu-container .main-menu-item,
+    .menu-container .menu-bot-img {
+        padding: 0 10px; /* 좌우 패딩 감소 */
+        font-size: 14px; /* 폰트 크기 감소 */
+    }
+    .menu-container .menu-bot-img {
+        padding-left: 10px; /* FAQ 안내봇 아이콘의 패딩 감소 */
+    }
+    nav ul li a {
+        padding: 1em 1.5em; /* 메뉴 항목의 패딩 조정 */
+    }
+     #faqContainer{
+     top: 170px;
+     right: 0 !important; 
+     }
+     .menu-bot-img span{
+     	display:none;
+     }
+}
+
+/*===============================================
+ 					footer 
+ 			bg : #353535 / font : #f3eeea
+=================================================*/
+@media screen and (max-width: 768px) {
+	#planB-footer{
+	width: 85% !important;
+	max-width: 768px;
+	}
+	.footer-loca-copy{
+	display:flex;
+	flex-direction: column;
+	align-items:center;
+	line-height:1.7;
+	}
+}
+
+#planB-footer{
+	width:100%; 
+	max-width:1024px; 
+	margin:0 auto; 
+	background: #353535;
+}
+#planB-footer a{color:#f3eeea;}
+#planB-footer a:hover{color:#fc80ac;}
+#planB-footer p{color:#f3eeea;}
+
+footer{background: #353535;}
+.footer-wrap{display:flex; justify-content: space-between;}
+
+/* footer - 공지사항, 자주묻는질문, 개인정보처리방침 */
+.footer-wrap-pages{display:flex; width:400px; padding:20px 0 10px 0; }
+.footer-wrap-pages a{padding-right:30px;}
+/* footer -  ADMIN */
+.footer-wrap-admin{display:flex; padding-top: 20px;}
+
+/* footer - 학원 주소 및 copyright(저작권) */
+.footer-loca-copy{display:flex; justify-content: space-between; padding: 10px 0 20px 0;}
+
+/*====================================================
+				index (main)
+=======================================================*/
+/*
+	main - body1 기상특보 한 줄 알림 
+*/
+
+#weather-caution1{
+	width:100%; 
+	height:46px; 
+	margin-top:20px; 
+	margin-bottom:30px;
+	background:#05347E;
+	overflow: hidden; /* 추가: 슬라이드 이동 시 넘치는 부분 숨김 */
+	}
+.slider_wrap{
+	max-width: 1024px;
+	width:100%;
+    margin: 0 auto;
+	height:46px;
+	overflow: hidden; 
+}
+@media screen and (max-width: 768px) {
+	.slider_wrap{
+	padding: 0 15px;
+	}
+}
+
+/* 텍스트가 보이는 영역 */
+.slider_text { 
+    width: 100%;
+    height: 46px;
+}
+/* 텍스트가 움직이는 영역 */
+.slider_inner{
+	position:relative;
+	width:100%;
+	}
+
+/* 각 텍스트들.. */
+.slider { 
+    width: auto; /* 너비를 자동으로 설정하여 텍스트 내용에 맞게 조정 */
+    height: 46px; /* `#weather-caution1`의 높이에 맞게 조정 */
+    display:flex;
+    align-items:center;
+} 
+.slider p{
+	color:#f3eeea; 
+	font-weight:700;
+	white-space: nowrap; /* 텍스트를 한 줄로.. */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트의 끝을 ...으로 표시  */
+}
+.slider p:hover{
+	white-space: normal; /* 텍스트를 여러 줄로 만들어 전부 보여줌 */
+    overflow: visible; /* 숨겨진 내용을 보여줌 */
+    text-overflow: clip; /* ... 제거 */
+    height: auto; /* 내용에 맞게 높이 조정 */
+	
+}
+.slider span{color:#00F2FF;}
+
+/* 
+	main - body2 날씨정보, 실시간 제보 게시판 
+*/
+#weather-realTimeReport{
+	width:100%; 
+	height:auto;
+	margin:0 auto;
+	margin-bottom: 30px; 
+	max-width:1024px;
+	display:flex;
+	justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+	#weather-realTimeReport{
+	display:flex;
+	flex-direction: column;
+	align-items:center;
+	}
+	.weatherInfo-airPollution, .realTimeReport-wrap{
+	width:85% !important;
+	max-width: 768px !important;
+	margin-bottom: 20px;
+	}
+	.realTimeReport-wrap{
+	margin-bottom:0px !important;
+	}
+}
+	
+/* 실시간 제보 게시판 */
+.realTimeReport-wrap{
+	width:49%;
+	height: 270px;
+	background: #ffffff;
+	border: 1px solid #B0B0B0;
+	}
+.report-text{
+	width: 86%;
+    margin: 0 auto;
+    text-align:center;
+}
+.report-title{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 22px 20px 20px 20px;
+	position: relative; /* 가상 요소의 기준점 설정 */
+  	border-bottom: none; /* 기존 테두리 제거 */
+}
+.report-title p{font-size:20px; font-weight:900; margin:0 auto;}
+.icon-wrap{padding-right:10px;}
+.icon-wrap i:hover{color:#0094FF;}
+
+.report-title::after {
+  content: ''; /* 가상 요소에는 content 속성이 필수입니다 */
+  position: absolute; /* 부모 요소에 대해 절대 위치 지정 */
+  left: 0; /* 왼쪽에서 시작 */
+  right: 0; /* 오른쪽 끝 조절로 길이 조정 */
+  bottom: 5px; /* 아래쪽에 배치 */
+  height: 2px; /* 테두리 두께 */
+  background: #b0b0b0; 
+  width: 90%; /* 테두리 길이 조정 */
+  /* 중앙 정렬을 위한 설정 */
+  margin-left: auto; 
+  margin-right: auto; 
+}
+.main-boardlist {
+	display: flex; /* Flexbox 레이아웃을 사용 */
+  	justify-content: center; /* 가로축 기준으로 가운데 정렬 */
+  	width: 100%; /* div의 너비를 최대로 설정 */
+}
+.main-boardlist table {
+  border-collapse: collapse; /* 셀 테두리 겹침 처리 */
+}
+.main-boardlist table tbody tr {
+  border-bottom:1px solid #b0b0b0; /* 각 행의 하단에 테두리 적용 */
+}
+.main-boardlist table tbody td, table tbody th {
+  padding: 10px 10px 7px 10px;
+}
+/* 특정 요소에만 스타일 적용 */
+.main-boardlist table tbody td:last-child {
+  color: #b0b0b0; /* 글자 색상 */
+  font-size: 10px; /* 글자 크기 */
+  vertical-align: bottom; /* 기준선에 따라 세로 정렬 */
+}
+.main-boardTitle{
+	display: block; /* 블록 레벨 요소로 만들어 전체 너비를 사용하게 합니다 */
+  white-space: nowrap; /* 텍스트를 줄 바꿈 없이 한 줄로 표시 */
+  overflow: hidden; /* 내용이 요소의 너비를 초과할 경우 숨깁니다 */
+  text-overflow: ellipsis; /* 내용이 넘칠 때 "..."으로 표시 */
+  width: 100%; /* 부모 요소(여기서는 td)의 전체 너비를 사용 */
+  max-width: 160px; /* 필요한 경우 최대 너비를 설정할 수 있습니다, 이 값은 실제 적용 시 조정이 필요할 수 있습니다 */
+}
+
+.main-boardlist table tbody .date-column {
+  color: #b0b0b0; /* 글자 색상 설정 */
+  font-size: 10px; /* 글자 크기 설정 */
+}
+
+/* 날씨 정보 */
+.weatherInfo-airPollution{
+	width:49%;
+	height: 270px;
+	background: #ffffff;
+	border: 1px solid #B0B0B0;
+}
+/* 날씨정보 콘텐츠 박스 */
+.weather-contentWrap{
+	display:flex; 
+	width:100%; 
+	margin-top: 5px;
+	}
+	
+/* 날씨정보 - 현재기온, 최저기온, 최고기온 */
+.today-weather-wrap{
+	width: 50%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    
+}
+.today-weather-wrap .today-title{
+	font-size:24px;
+	font-weight:900;
+	margin-bottom: 5px;
+}
+/* 현재 기온*/
+.now-temperatures{
+	display:flex;
+	align-items: center;
+	margin-right: 5px;
+	margin-bottom: 15px
+}
+.weather-icons{
+	width:90px;
+	margin-right: 10px
+}
+.SeoulNowtemp{
+	font-weight:900;
+	font-size:35px;
+}
+/* 최고 기온 */
+.high-temperatures{
+	display:flex;
+	width: 60%;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.row-high-temp{
+	font-size:20px;
+	color: #9496A3;
+	font-weight:700;
+}
+.SeoulHightemp{
+	color: #ff2424;
+	font-weight:900;
+	font-size:20px;
+}
+
+/* 최저 기온 */
+.row-temperatures{
+	display:flex;
+	width: 60%;
+    justify-content: space-around;
+}
+.SeoulLowtemp{
+	color:#0094ff;
+	font-weight:900;
+	font-size:20px;
+}
+
+/* 날씨정보 - 미세먼지 농도 */
+.today-airpollution-wrap{
+	width:50%; 
+	border-left: 1px solid #B0B0B0;
+	display:flex;
+	flex-direction: column;
+	align-items:center;
+	margin-top: 30px;
+    justify-content: space-between;
+	}
+
+.today-airpollution-wrap .today-title{
+	font-size:24px;
+	font-weight:900;
+	margin-bottom: 22px;
+}
+/* 미세먼지 */
+.particulateMatter{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+.particulateMatter h3{
+	font-size:20px;
+	font-weight:700;
+}
+.particulateMatter small{
+	color: #9496A3;
+}
+.pmValue{
+	display:flex;
+	align-items: baseline;
+	margin-top: 3px;
+	color: #4761a1;
+	font-weight:900;
+}
+#pm10Value, #pm25Value{
+	font-size:35px;
+}
+
+/*
+	main - Body3 : 긴급재난문자 , btn3(비상연락망, 재난유관기관, 기상특보)
+*/
+@media screen and (max-width: 768px) {
+	#emergency-circleBtn3-bg{
+	height:450px !important;
+	display:flex;
+	align-items:center;
+	}
+	.emergency-circleBtn3-wrap{
+	padding: 30px 0;
+	display:flex;
+	align-items:center;
+	flex-direction: column;
+	}
+	.emergency-pinkBox{
+	margin-bottom:20px;
+	}
+	.emergency-pinkBox , .useful-three-btn{
+	width:85% !important;
+	max-width: 768px !important;
+	}
+	
+	.useful-three-btn .useful-btn{
+	margin:0 auto;
+	width: 160px;
+	height: 160px;
+	}
+	.useful-btn p{
+	font-size: 14px !important;
+	}
+}
+
+/* 긴급재난문자 */
+#emergency-circleBtn3-bg{ /* body3 컨테이너 틀  */
+	width:100%; 
+	height: 270px;
+	background:#DBE9F5;
+	}
+.emergency-circleBtn3-wrap{ /* body3 콘텐츠 wrap */
+	max-width: 1024px;
+    display: flex;
+    justify-content: center; 
+    margin: 0 auto; 
+    align-items: center; 
+    height: 100%; /* align-items를 정확히 작동시키기 위해 */
+} 
+/* 긴급 재난문자 api 부분 */
+.emergency-pinkBox{
+	width:40%;
+	height:200px;
+	border: 5px solid #FC80AC;
+	background:#ffffff;
+}
+.e-title{
+	font-size: 18px;
+    font-weight: 900;
+    margin:12px 0 0 15px;
+    }
+.emergency-text{ margin:0 10px 5px 10px;} 
+ 
+.ds-trclass{
+	width: 100%;
+	display: flex;
+    flex-direction: column;
+    }
+ .table tbody td{padding:3px 3px 3px 3px;}
+ .ds-trclass .ds-location-name{
+ 	margin-top:6px;
+ 	font-size:15px;
+ 	font-weight:900;
+ 	color: #05347e;
+ }
+ .ds-location-name:hover {
+    white-space: normal; /* 텍스트가 요소의 크기를 넘치더라도 줄 바꿈하여 전체 내용 표시 */
+    overflow: visible; /* 내용이 요소의 경계를 넘어서도 보이도록 함 */
+}
+ .ds-item-msg{
+ 	font-size:13px;
+ }
+.ds-item-msg strong{
+	font-size:12px;
+	color: #b0b0b0;
+}
+ /* btn3 - 비상연락망, 재난유관기관, 기상특보 */   
+ .useful-three-btn{ display:flex; width:60%; justify-content: flex-end; }
+ .useful-btn{
+ 	width:180px;
+ 	height:180px;
+ 	background:#FFFFFF;
+ 	border-radius: 100px;
+ 	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* box-shadow(그림자) : 'X'px 'Y'px 'blur강도'px 'spread범위'px rgba(0,0,0,투명도) */
+    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 26px;
+ }  
+ .useful-btn img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+ .useful-btn p{
+    font-size: 17px; 
+    font-weight:900;
+    margin: 0; 
+}   
+.useful-btn a:hover{color:#0094FF;}
+/*
+	main - Body 4 : 지진 발생 시 행동요령 (재난발생 시 행동요령)
+*/
+@media screen and (max-width: 768px) {
+	#actionTips-disaster{
+	height:220px !important;
+	}
+	
+	.actionTips-earthQuake{
+	width: 85% !important ;
+	max-width:768px;
+	}
+}
+
+#actionTips-disaster{
+	width:100%; 
+	height: 270px;
+	background:#4761A1;
+}
+.actionTips-earthQuake{
+	max-width:1024px; 
+	width:100%;
+    height: 100%; /* align-items를 정확히 작동시키기 위해 */
+    margin: 0 auto; 
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+
+.earthQuake-behavior{
+	width:100%; 
+	display:flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	}
+.earthQuake-behavior p{
+	font-size:20px;
+	font-weight:900;
+	color:#f3eeea;
+}
+.earthQuake-behavior a{
+	margin-top:10px;
+	font-size:15px;
+	color:#f3eeea;
+}
+.earthQuake-behavior a:hover{
+	color:#FC80AC;
+}
+/* 행동요령 img box */
+.specific-behavior{
+	width:100%;
+	border: 2px solid #B0B0B0;
+}
+.specific-behavior img {
+    width: 100%; /* 컨테이너의 너비에 맞춰 이미지 크기 조절 */
+    height: 100%; /* 컨테이너의 높이에 맞춰 이미지 크기 조절 */
+    object-fit: cover; /* 이미지의 비율을 유지하면서 컨테이너를 채움 */
+    display: block; /* 이미지 아래의 여백 제거 */
+}
+
+/*====================================================================
+			재난 유관 기관 - public-institution.html
+=====================================================================*/
+@media screen and (max-width: 768px) {
+	#pi-container{
+		width:85% !important;
+		max-width:768px;
+		margin: 0 auto;
+	}
+	 .pi-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 가운데 정렬을 위해 */
+    }
+
+    .pi-img-btn {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 내부 li 요소들을 가운데 정렬하기 위해 */
+        padding: 0; /* 필요한 경우 패딩 조정 */
+    }
+	 
+    .pi-img-btn li {
+        float: none; /* float 제거 */
+        margin: 5px; /* 주변 마진을 추가하여 간격 조정 */
+    }
+	
+}
+
+#pi-title{
+	width:100%;
+	height:91px;
+	background:#05347E;
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+#pi-title h3{
+	color: #f3eeea;
+	font-weight:700;
+	font-size:30px;
+}
+#pi-container{
+	max-width:1024px;
+	width:100%;
+	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+}
+.pi-wrap{
+	line-height: 1.5;
+    white-space: normal;
+    margin-bottom: 40px;
+}
+.pi-wrap h4{
+	font-size:20px;
+	font-weight:900;
+	padding: 30px 0 10px 0;
+}
+.pi-img-btn{
+	padding: 0 2px;
+}
+.pi-img-btn li{
+	float: left;
+    position: relative;
+	width:256px;
+	height:85px;
+	border: 1px solid #b0b0b0;
+	background: #ffffff;
+	margin: -1px 0 0 -1px;
+    box-sizing: border-box;
+    z-index:1;
+}
+.pi-img-btn div{
+    white-space: normal;
+    text-align: center;
+    margin-top: 25px;
+    }
+
+.pi-img-btn li:hover{
+	z-index:2;
+	border: 1.5px solid #004aad;
+}
+.pi-btn1{
+	display:flex;
+	flex-direction: column;
+    align-items: center;
+}
+.pi-btn1 strong{
+	font-size: 13px;
+	font-family:'NanumSquareRound';
+	color: #777777;
+    width: 100%;
+    text-align: center;
+    background: #f7f7f7;
+    padding-top: 3px;
+    margin-top: 5px;
+}
+/*=====================================================================
+				자주묻는질문 faq / 개인정보 처리방침
+====================================================================*/
+@media screen and (max-width: 768px) {
+	#question_container{
+	width: 100% !important;
+	max-width: 768px; 
+	}
+	#question_container .pp-wrap{
+		height: auto !important;
+	}
+/* 	#question_container p{ */
+/* 		font-size: 2vw; */
+/* 	} */
+	
+}
+  #question_container{
+  	max-width:1024px;
+	width:100%;
+	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+	margin-bottom: 60px;
+  }
+  .faq-wrap{
+      margin-top: 40px;
+      margin-left: 18%;
+  }
+  .pp-wrap {
+  	width: 70%;
+/*     height: 105px; */
+    height: auto;
+    background: #ffffff;
+    border: 1px solid #b0b0b0;
+    margin-top: 40px;
+    margin-left: 12%;
+    padding: 30px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  
+  
+  .faq-sections label{
+  	  font-size:20px;
+  	  font-weight:700;
+      text-decoration: none;
+      display: inline-block;
+      width: 80%;
+      border-bottom: 1px solid #353535;
+      padding-bottom:5px;
+      color: #353535;
+      margin-top:25px;
+  }
+  .pp-sections label{
+  	  font-size:20px;
+  	  font-weight:700;
+      text-decoration: none;
+      display: inline-block;
+      width: 80%;
+/*       border-bottom: 1px solid #353535; */
+      padding-bottom:5px;
+      color: #353535;
+      margin-top:25px;
+  }
+  .menubars { 
+    display: none; 
+    color: #353535;
+    background-color: rgba(255, 255, 255, 0.7);
+    width:77.5%;
+    padding: 10px;
+    margin-bottom:20px;
+  }
+  label:hover{
+  	color:#004aad;
+  	cursor:pointer;
+  }
+  
+  /* 체크되면 메뉴를 표시하기 */
+  #check-btn1:checked ~ .menubars,
+  #check-btn2:checked ~ .menubars,
+  #check-btn3:checked ~ .menubars,
+  #check-btn4:checked ~ .menubars,
+  #check-btn5:checked ~ .menubars,
+  #check-btn6:checked ~ .menubars,
+  #check-btn7:checked ~ .menubars,
+  #check-btn8:checked ~ .menubars,
+  #check-btn9:checked ~ .menubars { 
+    display: block; 
+   border-top: 1px solid #353535;
+    
+  }
+  
+  /* 체크박스는 화면에서 감추기 */
+  #check-btn1, #check-btn2, #check-btn3, 
+  #check-btn4, #check-btn5, #check-btn6, 
+  #check-btn7, #check-btn8, #check-btn9
+   { 
+    display: none; 
+  }
+  
+  
+  

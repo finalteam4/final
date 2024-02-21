@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>내 추천글</title>
+<script src="https://kit.fontawesome.com/69798321c6.js" ></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div th:replace="~{header}"></div>
+	<div id="pi-title">
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>내 글 목록</h2>
+	</div>
+	<div id="content">
+		<div class="board_content">
+		<table class="tbl_list">
+			<thead>
+				<tr>
+					<th scope="col">글분류</th>
+					<th scope="col">글제목</th>
+					<th scope="col">글쓴이</th>
+					<th scope="col">작성일</th>
+					<th scope="col">조회수</th>
+					<th scope="col">추천</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="board : ${boardList}">
+	                <th>
+	                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
+	                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
+	                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
+	                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
+	                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
+	                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
+	                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
+	                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+	                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
+	                </th>
+				    <td class="td_title" style="width:40%;">
+					    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+					    	<span th:text="${board.boardTitle}"></span>
+					    	<span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+					    </a>
+					</td>
+
+	                <td th:text="${board.boardWriter}"></td>
+	                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+	                <td th:text="${board.boardHits}"></td>
+	                <td th:text="${board.likeCount}"><th:block th:if="${board.likeCount == null}" th:text="0"></th:block></td>
+	            </tr>
+			</tbody>
+		</table>
+		<!-- 페이징처리 시작 -->
+			<div style="width: 50%; margin: 10px auto;">
+	              <ul class="pagination_btn">                 
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${startPage eq 1}? '/board/myboardlist/?page=1' : @{/board/myboardlist/(page=${startPage-1})}">&lt;&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.first}? '/board/myboardlist/?page=1' : @{/board/myboardlist/(page=${boardList.number})}">&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq page} ? 'page-btn active' : 'page-btn'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                      <a class="page-box" th:href="@{/board/myboardlist/(page=${page})}">
+                          <span th:text="${page}"></span>
+                      </a>
+                  </li>
+                      <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.last}? @{/board/myboardlist/(page=${endPage})} : @{/board/myboardlist/(page=${boardList.number+2})}">&gt;</a>
+                      </li>
+                      <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.totalPages eq endPage}? @{/board/myboardlist/(page=${endPage})} : @{/board/myboardlist/(page=${endPage+1})}">&gt;&gt;</a>
+                      </li>
+                 </ul>
+	       </div>
+          <!-- 페이징처리 끝 -->
+		</div>
+	</div>
+<div th:replace="~{footer}"></div>
+</body>
+</html>

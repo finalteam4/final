@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div th:replace="~{header}"></div>
+	<div id="pi-title">
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>공지사항 댓글 수정</h2>
+	</div>
+	<div id="content">
+		<div class="board_content">
+		<div class="replyUpdateForm">
+		    <form th:action="@{/noticereply/update}" method="post" id="replyform">
+				<!-- 'hidden'은 ui를 만들지 않고 데이터 숨겨서 보낼때 사용 -->
+				<input type="hidden" name="id" th:value="${reply.id}">
+				<input type="hidden" name="boardId" th:value="${reply.boardId }">
+				<table style="width: 100%;">
+					<tbody>
+						<tr>
+							<td><textarea name="rcontent" class="write-control" th:text="${reply.rcontent}"
+							rows="10" style="resize: none;"></textarea></td>
+						</tr>
+						<tr>
+							<td class="writeBot">
+								<div style="margin-top: 5px;">
+								<button type="submit" class="board_btn" style="margin: 5px;">수정</button>
+								<button type="reset" class="board_btn" style="margin: 5px;">초기화</button>
+								<a th:href="@{|/noticeboard/${reply.boardId}|}"><button type="button" class="board_btn" style="margin: 5px;">뒤로</button></a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+		</div>
+	</div>
+	<div th:replace="~{footer}"></div>
+</body>
+</html>
